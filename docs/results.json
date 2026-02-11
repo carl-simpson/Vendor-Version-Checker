@@ -1,0 +1,202 @@
+{
+    "generated_at": "2026-02-11 12:55:42",
+    "lock_file": "cisco-merchandise-store/composer.lock",
+    "total_packages": 22,
+    "results": [
+        {
+            "package": "aheadworks/module-blog",
+            "installed_version": "2.15.0",
+            "latest_version": "Error",
+            "vendor_url": "https://aheadworks.com/magento-2-blog-extension",
+            "status": "ERROR",
+            "error": "Cloudflare protection detected on https://aheadworks.com/magento-2-blog-extension \u2014 website requires browser verification"
+        },
+        {
+            "package": "amasty/gdpr-cookie",
+            "installed_version": "2.9.5",
+            "latest_version": "Error",
+            "vendor_url": "https://amasty.com/gdpr-cookie-compliance-for-magento-2.html",
+            "status": "ERROR",
+            "error": "Cloudflare protection detected on https://amasty.com/gdpr-cookie-compliance-for-magento-2.html \u2014 website requires browser verification"
+        },
+        {
+            "package": "amasty/geoip",
+            "installed_version": "1.5.7",
+            "latest_version": "Error",
+            "vendor_url": "https://amasty.com/geoip-for-magento-2.html",
+            "status": "ERROR",
+            "error": "Cloudflare protection detected on https://amasty.com/geoip-for-magento-2.html \u2014 website requires browser verification"
+        },
+        {
+            "package": "amasty/geoipredirect",
+            "installed_version": "1.3.10",
+            "latest_version": "Error",
+            "vendor_url": "https://amasty.com/geoip-redirect-for-magento-2.html",
+            "status": "ERROR",
+            "error": "Cloudflare protection detected on https://amasty.com/geoip-redirect-for-magento-2.html \u2014 website requires browser verification"
+        },
+        {
+            "package": "amasty/module-gdpr",
+            "installed_version": "2.9.4",
+            "latest_version": "Error",
+            "vendor_url": "https://amasty.com/gdpr-for-magento-2.html",
+            "status": "ERROR",
+            "error": "Cloudflare protection detected on https://amasty.com/gdpr-for-magento-2.html \u2014 website requires browser verification"
+        },
+        {
+            "package": "amasty/number",
+            "installed_version": "1.1.9",
+            "latest_version": "Error",
+            "vendor_url": "https://amasty.com/custom-order-number-for-magento-2.html",
+            "status": "ERROR",
+            "error": "Cloudflare protection detected on https://amasty.com/custom-order-number-for-magento-2.html \u2014 website requires browser verification"
+        },
+        {
+            "package": "amasty/promo",
+            "installed_version": "2.13.0",
+            "latest_version": "Error",
+            "vendor_url": "https://amasty.com/special-promotions-for-magento-2.html",
+            "status": "ERROR",
+            "error": "Cloudflare protection detected on https://amasty.com/special-promotions-for-magento-2.html \u2014 website requires browser verification"
+        },
+        {
+            "package": "bsscommerce/disable-compare",
+            "installed_version": "1.0.2",
+            "latest_version": "N/A",
+            "vendor_url": null,
+            "source": "packagist",
+            "status": "UNAVAILABLE",
+            "error": "Package not found on Packagist",
+            "checked_at": "2026-02-11 12:55:40"
+        },
+        {
+            "package": "justuno.com/m2",
+            "installed_version": "1.8.2",
+            "latest_version": "1.9.1",
+            "vendor_url": "https://packagist.org/packages/justuno.com/m2",
+            "source": "packagist",
+            "status": "UPDATE_AVAILABLE",
+            "checked_at": "2026-02-11 12:55:40"
+        },
+        {
+            "package": "klaviyo/magento2-extension",
+            "installed_version": "4.0.9",
+            "latest_version": "4.4.2",
+            "vendor_url": "https://packagist.org/packages/klaviyo/magento2-extension",
+            "source": "packagist",
+            "status": "UPDATE_AVAILABLE",
+            "checked_at": "2026-02-11 12:55:40"
+        },
+        {
+            "package": "mageme/module-webforms",
+            "installed_version": "2.9.46",
+            "latest_version": "4.6.0",
+            "vendor_url": "https://mageme.com/magento-2-form-builder.html",
+            "source": "vendor_website",
+            "status": "UPDATE_AVAILABLE",
+            "checked_at": "2026-02-11 12:55:41"
+        },
+        {
+            "package": "mageplaza/module-smtp",
+            "installed_version": "4.7.5",
+            "latest_version": "4.7.21",
+            "vendor_url": "https://www.mageplaza.com/magento-2-smtp/",
+            "source": "vendor_website",
+            "status": "UPDATE_AVAILABLE",
+            "checked_at": "2026-02-11 12:55:41"
+        },
+        {
+            "package": "mageworx/module-donationsmeta",
+            "installed_version": "2.1.2",
+            "latest_version": "N/A",
+            "vendor_url": null,
+            "source": "packagist",
+            "status": "UNAVAILABLE",
+            "error": "Package not found on Packagist",
+            "checked_at": "2026-02-11 12:55:41"
+        },
+        {
+            "package": "mageworx/module-giftcards",
+            "installed_version": "3.0.3",
+            "latest_version": "N/A",
+            "vendor_url": null,
+            "source": "packagist",
+            "status": "UNAVAILABLE",
+            "error": "Package not found on Packagist",
+            "checked_at": "2026-02-11 12:55:41"
+        },
+        {
+            "package": "paradoxlabs/authnetcim",
+            "installed_version": "4.5.2",
+            "latest_version": "5.2.0",
+            "vendor_url": "https://packagist.org/packages/paradoxlabs/authnetcim",
+            "source": "packagist",
+            "status": "UPDATE_AVAILABLE",
+            "checked_at": "2026-02-11 12:55:41"
+        },
+        {
+            "package": "paradoxlabs/tokenbase",
+            "installed_version": "4.5.5",
+            "latest_version": "4.8.0",
+            "vendor_url": "https://packagist.org/packages/paradoxlabs/tokenbase",
+            "source": "packagist",
+            "status": "UPDATE_AVAILABLE",
+            "checked_at": "2026-02-11 12:55:41"
+        },
+        {
+            "package": "stripe/stripe-payments",
+            "installed_version": "3.3.0",
+            "latest_version": "N/A",
+            "vendor_url": null,
+            "source": "packagist",
+            "status": "UNAVAILABLE",
+            "error": "Package not found on Packagist",
+            "checked_at": "2026-02-11 12:55:41"
+        },
+        {
+            "package": "taxjar/module-taxjar",
+            "installed_version": "2.1.0",
+            "latest_version": "4.0.1",
+            "vendor_url": "https://packagist.org/packages/taxjar/module-taxjar",
+            "source": "packagist",
+            "status": "UPDATE_AVAILABLE",
+            "checked_at": "2026-02-11 12:55:41"
+        },
+        {
+            "package": "webshopapps/module-matrixrate",
+            "installed_version": "20.4.3",
+            "latest_version": "20.5.1",
+            "vendor_url": "https://packagist.org/packages/webshopapps/module-matrixrate",
+            "source": "packagist",
+            "status": "UPDATE_AVAILABLE",
+            "checked_at": "2026-02-11 12:55:42"
+        },
+        {
+            "package": "xtento/orderexport",
+            "installed_version": "2.16.3",
+            "latest_version": "2.17.6",
+            "vendor_url": "https://www.xtento.com/magento-extensions/magento-order-export-module.html",
+            "source": "vendor_website",
+            "status": "UPDATE_AVAILABLE",
+            "checked_at": "2026-02-11 12:55:42"
+        },
+        {
+            "package": "yotpo/magento2-module-yotpo-loyalty",
+            "installed_version": "1.3.7",
+            "latest_version": "1.4.13",
+            "vendor_url": "https://packagist.org/packages/yotpo/magento2-module-yotpo-loyalty",
+            "source": "packagist",
+            "status": "UPDATE_AVAILABLE",
+            "checked_at": "2026-02-11 12:55:42"
+        },
+        {
+            "package": "yotpo/module-review",
+            "installed_version": "3.3.0",
+            "latest_version": "3.3.0",
+            "vendor_url": "https://packagist.org/packages/yotpo/module-review",
+            "source": "packagist",
+            "status": "UP_TO_DATE",
+            "checked_at": "2026-02-11 12:55:42"
+        }
+    ]
+}
