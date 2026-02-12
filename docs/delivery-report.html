@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Report — GetJohn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print { .no-print { display: none !important; } }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased">
+
+<div class="min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-[#333333]">
+        <div class="max-w-5xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="0" fill="#1c69af"/>
+                        <path d="M16 12L8 20L16 28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M24 12L32 20L24 28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white">Delivery Report</h1>
+                        <p class="mt-1 text-sm text-gray-400">GetJohn &mdash; Dowlis Merchandise Store</p>
+                    </div>
+                </div>
+                <div class="text-right text-sm text-gray-400">
+                    <div>11 February 2026</div>
+                    <div>2-Day Sprint</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Executive Summary -->
+    <section class="max-w-5xl mx-auto px-6 py-8">
+        <h2 class="text-lg font-bold text-[#333333] mb-4">Executive Summary</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+            This report documents all work completed across a 2-day sprint for the Dowlis Merchandise Store (Magento 2.4.5 Enterprise Cloud). Both original task specifications were met in full, with additional scope delivered including private Composer repository support, Amasty licensing investigation, and an interactive HTML dashboard.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white border border-green-200 p-4">
+                <div class="text-2xl font-bold text-green-600">2 / 2</div>
+                <div class="text-xs text-gray-500 mt-1">Tasks Completed</div>
+            </div>
+            <div class="bg-white border border-[#1c69af]/30 p-4">
+                <div class="text-2xl font-bold text-[#1c69af]">35</div>
+                <div class="text-xs text-gray-500 mt-1">Packages Tracked</div>
+            </div>
+            <div class="bg-white border border-[#1c69af]/30 p-4">
+                <div class="text-2xl font-bold text-[#1c69af]">7,377</div>
+                <div class="text-xs text-gray-500 mt-1">Files Scanned (PHP 8.4)</div>
+            </div>
+            <div class="bg-white border border-[#1c69af]/30 p-4">
+                <div class="text-2xl font-bold text-[#1c69af]">v1.2.0</div>
+                <div class="text-xs text-gray-500 mt-1">Final Version</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 1 Spec -->
+    <section class="max-w-5xl mx-auto px-6 pb-8">
+        <div class="bg-white border border-gray-200 p-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="flex-none w-8 h-8 bg-[#1c69af] flex items-center justify-center text-sm font-bold text-white">1</span>
+                <h2 class="text-lg font-bold text-[#333333]">Day 1 &mdash; Task Specification</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Task 1 Spec -->
+                <div class="border border-gray-100 p-4">
+                    <h3 class="text-sm font-semibold text-[#1c69af] mb-2">Task 1: Finish PHP Tool (Composer Vendor Checker)</h3>
+                    <ul class="space-y-1.5 text-sm text-gray-700">
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Review existing implementation</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Complete missing functionality</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Ensure reliable operation</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Improve robustness</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Create README.md</li>
+                    </ul>
+                </div>
+
+                <!-- Task 2 Spec -->
+                <div class="border border-gray-100 p-4">
+                    <h3 class="text-sm font-semibold text-[#1c69af] mb-2">Task 2: Module &amp; PHP Compatibility Scan</h3>
+                    <ul class="space-y-1.5 text-sm text-gray-700">
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> PHP 8.4 compatibility status for all modules</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> List all files needing changes</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Use SAST tool (static analysis)</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Output as text and spreadsheet</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 1 Delivery -->
+    <section class="max-w-5xl mx-auto px-6 pb-8">
+        <div class="bg-white border border-gray-200 p-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="flex-none w-8 h-8 bg-[#1c69af] flex items-center justify-center text-sm font-bold text-white">1</span>
+                <h2 class="text-lg font-bold text-[#333333]">Day 1 &mdash; What Was Delivered</h2>
+            </div>
+
+            <!-- Task 1 Delivery -->
+            <div class="mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">COMPLETE</span>
+                    <h3 class="text-sm font-semibold text-[#333333]">Task 1: Composer Vendor Checker &mdash; v1.1.0</h3>
+                </div>
+
+                <h4 class="text-xs font-semibold text-[#1c69af] uppercase tracking-wider mt-4 mb-2">Bug Fixes</h4>
+                <table class="w-full text-sm mb-4">
+                    <tbody>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333] w-1/3">getSupportedVendors() broken</td>
+                            <td class="py-2 text-gray-600">Method was incorrectly transforming vendor keys using <code class="bg-gray-100 px-1 text-xs">explode('.', $domain)[0]</code>, causing vendor name mismatches and preventing packages from being matched. Removed the unnecessary transformation.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">XTENTO picking M1 version</td>
+                            <td class="py-2 text-gray-600">Product pages list both Magento 1 and Magento 2 versions. Implemented <code class="bg-gray-100 px-1 text-xs">version_select: highest</code> strategy to correctly select the M2 version.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 class="text-xs font-semibold text-[#1c69af] uppercase tracking-wider mt-4 mb-2">New Features</h4>
+                <table class="w-full text-sm mb-4">
+                    <tbody>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333] w-1/3">Packagist API fallback</td>
+                            <td class="py-2 text-gray-600">When website scraping fails (Cloudflare, no version on page), falls back to the Packagist API (<code class="bg-gray-100 px-1 text-xs">repo.packagist.org/p2/</code>) for latest stable version. Results labelled <code class="bg-gray-100 px-1 text-xs">[via Packagist]</code>.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">Packagist-only tracking</td>
+                            <td class="py-2 text-gray-600">Packages without vendor website patterns (Klaviyo, TaxJar, Yotpo, etc.) are checked directly via Packagist API.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">Cloudflare detection</td>
+                            <td class="py-2 text-gray-600">HTTP 403 responses containing Cloudflare Managed Challenge markers detected and reported with clear messaging instead of raw error dumps.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">UNAVAILABLE status</td>
+                            <td class="py-2 text-gray-600">New status for packages that can't be checked automatically. Previously showed misleading <code class="bg-gray-100 px-1 text-xs">AHEAD_OF_VENDOR</code> with empty version.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">Version source tracking</td>
+                            <td class="py-2 text-gray-600">Each result now includes a <code class="bg-gray-100 px-1 text-xs">source</code> field indicating where the version was obtained from.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 class="text-xs font-semibold text-[#1c69af] uppercase tracking-wider mt-4 mb-2">Coverage Expansion</h4>
+                <p class="text-sm text-gray-600 mb-2">Package coverage expanded from the original set to 35 tracked packages across the Dowlis store:</p>
+                <div class="grid grid-cols-2 gap-2 text-xs text-gray-600">
+                    <div>
+                        <div class="font-medium text-[#333333] mb-1">New website mappings:</div>
+                        amasty/gdpr-cookie, amasty/geoipredirect, amasty/module-gdpr, amasty/number, aheadworks/module-blog, mageplaza/module-smtp
+                    </div>
+                    <div>
+                        <div class="font-medium text-[#333333] mb-1">New Packagist packages:</div>
+                        taxjar, webshopapps, klaviyo, yotpo (x2), paradoxlabs (x2), justuno, stripe, bsscommerce, mageworx (x2)
+                    </div>
+                </div>
+
+                <h4 class="text-xs font-semibold text-[#1c69af] uppercase tracking-wider mt-4 mb-2">Documentation</h4>
+                <table class="w-full text-sm">
+                    <tbody>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333] w-1/3">README.md</td>
+                            <td class="py-2 text-gray-600">Complete rewrite covering features, supported vendors, installation, usage, command options, example output, architecture, known limitations, and troubleshooting.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">CHANGELOG.md</td>
+                            <td class="py-2 text-gray-600">Detailed v1.1.0 changelog with bug fixes, new features, expanded coverage, and technical improvements.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr class="my-6 border-gray-200">
+
+            <!-- Task 2 Delivery -->
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">COMPLETE</span>
+                    <h3 class="text-sm font-semibold text-[#333333]">Task 2: PHP 8.4 Compatibility Scan</h3>
+                </div>
+
+                <h4 class="text-xs font-semibold text-[#1c69af] uppercase tracking-wider mt-4 mb-2">Scanner Setup</h4>
+                <table class="w-full text-sm mb-4">
+                    <tbody>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333] w-1/3">SAST Tool</td>
+                            <td class="py-2 text-gray-600">PHP_CodeSniffer 3.13.5 + PHPCompatibility 9.3.5</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">Target Version</td>
+                            <td class="py-2 text-gray-600">PHP 8.4</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">Total Files Scanned</td>
+                            <td class="py-2 text-gray-600">7,377 across 28 vendor groups</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">Package Source</td>
+                            <td class="py-2 text-gray-600">671 packages extracted from Composer download cache (vendor install blocked by Amasty auth 403)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 class="text-xs font-semibold text-[#1c69af] uppercase tracking-wider mt-4 mb-2">Scan Results Summary</h4>
+                <div class="grid grid-cols-4 gap-3 mb-4">
+                    <div class="bg-green-50 border border-green-200 p-3 text-center">
+                        <div class="text-xl font-bold text-green-600">20</div>
+                        <div class="text-xs text-gray-500">PASS</div>
+                    </div>
+                    <div class="bg-amber-50 border border-amber-200 p-3 text-center">
+                        <div class="text-xl font-bold text-amber-600">4</div>
+                        <div class="text-xs text-gray-500">WARN</div>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 p-3 text-center">
+                        <div class="text-xl font-bold text-red-600">4</div>
+                        <div class="text-xs text-gray-500">FAIL</div>
+                    </div>
+                    <div class="bg-gray-50 border border-gray-200 p-3 text-center">
+                        <div class="text-xl font-bold text-gray-500">42 / 47</div>
+                        <div class="text-xs text-gray-500">Errors / Warnings</div>
+                    </div>
+                </div>
+
+                <h4 class="text-xs font-semibold text-[#1c69af] uppercase tracking-wider mt-4 mb-2">Key Findings</h4>
+                <table class="w-full text-sm mb-4">
+                    <thead>
+                        <tr class="bg-[#1c69af]/5 border-b border-[#1c69af]/20">
+                            <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Vendor</th>
+                            <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Status</th>
+                            <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Issues</th>
+                            <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Assessment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-100">
+                            <td class="px-3 py-2 font-medium text-[#333333]">Custom code (app/code)</td>
+                            <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">PASS</span></td>
+                            <td class="px-3 py-2 text-gray-600">0 errors, 0 warnings</td>
+                            <td class="px-3 py-2 text-gray-600">Fully compatible</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="px-3 py-2 font-medium text-[#333333]">GetJohn modules</td>
+                            <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">PASS</span></td>
+                            <td class="px-3 py-2 text-gray-600">0 errors, 0 warnings</td>
+                            <td class="px-3 py-2 text-gray-600">Fully compatible</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="px-3 py-2 font-medium text-[#333333]">laminas</td>
+                            <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-red-100 text-red-800">FAIL</span></td>
+                            <td class="px-3 py-2 text-gray-600">35 errors, 6 warnings</td>
+                            <td class="px-3 py-2 text-gray-600">Magento core dep &mdash; resolved by 2.4.7+ upgrade</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="px-3 py-2 font-medium text-[#333333]">symfony</td>
+                            <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-red-100 text-red-800">FAIL</span></td>
+                            <td class="px-3 py-2 text-gray-600">4 errors, 17 warnings</td>
+                            <td class="px-3 py-2 text-gray-600">Magento core dep &mdash; resolved by 2.4.7+ upgrade</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="px-3 py-2 font-medium text-[#333333]">elasticsearch</td>
+                            <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800">FALSE +</span></td>
+                            <td class="px-3 py-2 text-gray-600">2 errors (class name, not function)</td>
+                            <td class="px-3 py-2 text-gray-600">No action needed</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="px-3 py-2 font-medium text-[#333333]">stripe</td>
+                            <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-red-100 text-red-800">FAIL</span></td>
+                            <td class="px-3 py-2 text-gray-600">1 error, 1 warning</td>
+                            <td class="px-3 py-2 text-gray-600">Update stripe-php SDK</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="px-3 py-2 font-medium text-[#333333]">mageworx, justuno, guzzlehttp, klaviyo</td>
+                            <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800">WARN</span></td>
+                            <td class="px-3 py-2 text-gray-600">Warnings only (mostly false positives)</td>
+                            <td class="px-3 py-2 text-gray-600">Low risk, update where possible</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 class="text-xs font-semibold text-[#1c69af] uppercase tracking-wider mt-4 mb-2">Deliverables</h4>
+                <table class="w-full text-sm">
+                    <tbody>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333] w-1/3">Text Report</td>
+                            <td class="py-2 text-gray-600"><code class="bg-gray-100 px-1 text-xs">php-compat-scanner/PHP-8.4-Compatibility-Report.md</code> &mdash; Full analysis with per-vendor breakdown, affected files, risk assessment, and upgrade path recommendations.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">Spreadsheet (CSV)</td>
+                            <td class="py-2 text-gray-600"><code class="bg-gray-100 px-1 text-xs">php-compat-scanner/php84-compatibility-results.csv</code> &mdash; 118-row CSV with per-file issue detail for filtering and sorting.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">Raw JSON Results</td>
+                            <td class="py-2 text-gray-600"><code class="bg-gray-100 px-1 text-xs">php-compat-scanner/results/*.json</code> &mdash; 28 phpcs JSON output files per vendor group.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 2 Spec -->
+    <section class="max-w-5xl mx-auto px-6 pb-8">
+        <div class="bg-white border border-gray-200 p-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="flex-none w-8 h-8 bg-[#1c69af] flex items-center justify-center text-sm font-bold text-white">2</span>
+                <h2 class="text-lg font-bold text-[#333333]">Day 2 &mdash; Task Specification</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="border border-gray-100 p-4">
+                    <h3 class="text-sm font-semibold text-[#1c69af] mb-2">Private Composer Repository Support</h3>
+                    <ul class="space-y-1.5 text-sm text-gray-700">
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Wire up private repo version checking</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Auto-detect repos from composer.json</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Authenticate via auth.json credentials</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Support Satis/V2/V1 repo formats</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Handle expired/invalid credentials gracefully</li>
+                    </ul>
+                </div>
+
+                <div class="border border-gray-100 p-4">
+                    <h3 class="text-sm font-semibold text-[#1c69af] mb-2">Documentation, Branding &amp; Dashboard</h3>
+                    <ul class="space-y-1.5 text-sm text-gray-700">
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Update HTML dashboard with all findings</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Rename Cisco references to Dowlis</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Apply Dowlis brand colour palette</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Document Amasty licensing migration</li>
+                        <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Update README.md and CHANGELOG.md</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 2 Delivery -->
+    <section class="max-w-5xl mx-auto px-6 pb-8">
+        <div class="bg-white border border-gray-200 p-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="flex-none w-8 h-8 bg-[#1c69af] flex items-center justify-center text-sm font-bold text-white">2</span>
+                <h2 class="text-lg font-bold text-[#333333]">Day 2 &mdash; What Was Delivered</h2>
+            </div>
+
+            <!-- Private Repo -->
+            <div class="mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">COMPLETE</span>
+                    <h3 class="text-sm font-semibold text-[#333333]">Private Composer Repository Support &mdash; v1.2.0</h3>
+                </div>
+
+                <h4 class="text-xs font-semibold text-[#1c69af] uppercase tracking-wider mt-4 mb-2">Implementation</h4>
+                <table class="w-full text-sm mb-4">
+                    <tbody>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333] w-1/3">Auto-detection</td>
+                            <td class="py-2 text-gray-600">Reads <code class="bg-gray-100 px-1 text-xs">composer.json</code> repository definitions and <code class="bg-gray-100 px-1 text-xs">auth.json</code> credentials. Matches packages to private repos via dist URL or notification URL from <code class="bg-gray-100 px-1 text-xs">composer.lock</code>.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">Multi-format resolution</td>
+                            <td class="py-2 text-gray-600">Supports Composer V2 (<code class="bg-gray-100 px-1 text-xs">p2/</code>), V1 (<code class="bg-gray-100 px-1 text-xs">p/</code>), full <code class="bg-gray-100 px-1 text-xs">packages.json</code>, and Satis provider-includes with hash-based URL resolution.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">Smart filtering</td>
+                            <td class="py-2 text-gray-600">Skips <code class="bg-gray-100 px-1 text-xs">repo.magento.com</code>, <code class="bg-gray-100 px-1 text-xs">marketplace.magento.com</code>, and internal Satis/GetJohn repos to avoid false matches against Magento core packages.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">Auth expired handling</td>
+                            <td class="py-2 text-gray-600">When private repo queries fail (HTTP 403), reports "auth may be expired" with actionable guidance instead of generic errors.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 class="text-xs font-semibold text-[#1c69af] uppercase tracking-wider mt-4 mb-2">Private Repo Results</h4>
+                <table class="w-full text-sm mb-4">
+                    <thead>
+                        <tr class="bg-[#1c69af]/5 border-b border-[#1c69af]/20">
+                            <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Vendor</th>
+                            <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Repository</th>
+                            <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Status</th>
+                            <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-100">
+                            <td class="px-3 py-2 font-medium text-[#333333]">XTENTO</td>
+                            <td class="px-3 py-2 text-gray-600"><code class="bg-gray-100 px-1 text-xs">dowlis.repo.xtento.com</code></td>
+                            <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">Working</span></td>
+                            <td class="px-3 py-2 text-gray-600">pdfcustomizer 2.14.9 &rarr; 2.17.0, xtcore 2.17.0 &rarr; 2.21.0</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="px-3 py-2 font-medium text-[#333333]">Amasty (x8)</td>
+                            <td class="px-3 py-2 text-gray-600"><code class="bg-gray-100 px-1 text-xs">composer.amasty.com</code></td>
+                            <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800">Auth Expired</span></td>
+                            <td class="px-3 py-2 text-gray-600">Global keys deprecated Jan 2026 &mdash; needs project-level keys</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="px-3 py-2 font-medium text-[#333333]">MageWorx (x3)</td>
+                            <td class="px-3 py-2 text-gray-600"><code class="bg-gray-100 px-1 text-xs">packages.mageworx.com</code></td>
+                            <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800">Auth Expired</span></td>
+                            <td class="px-3 py-2 text-gray-600">Credentials present but returning errors</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr class="my-6 border-gray-200">
+
+            <!-- Amasty Investigation -->
+            <div class="mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">COMPLETE</span>
+                    <h3 class="text-sm font-semibold text-[#333333]">Amasty Licensing Investigation</h3>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">During the scan, all 14 Amasty packages returned HTTP 403 errors. Investigation revealed that Amasty deprecated all global Composer access keys on 1 January 2026, replacing them with project-based keys.</p>
+                <div class="bg-amber-50 border border-amber-200 p-4 text-sm">
+                    <div class="font-medium text-amber-800 mb-2">Action Required by Client</div>
+                    <ol class="space-y-1 text-amber-700 list-decimal ml-4">
+                        <li>Log in to Amasty customer portal</li>
+                        <li>Create a Project for the Dowlis Merchandise Store</li>
+                        <li>Assign all 14 purchased Amasty extensions to the project</li>
+                        <li>Generate new project-level Composer keys</li>
+                        <li>Update <code class="bg-amber-100 px-1">auth.json</code> with new credentials</li>
+                        <li>Verify with <code class="bg-amber-100 px-1">composer update amasty/* --dry-run</code></li>
+                    </ol>
+                    <p class="mt-2 text-amber-700">Full migration steps documented in <code class="bg-amber-100 px-1">PHP-8.4-Compatibility-Report.md</code>.</p>
+                </div>
+            </div>
+
+            <hr class="my-6 border-gray-200">
+
+            <!-- Dashboard & Branding -->
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">COMPLETE</span>
+                    <h3 class="text-sm font-semibold text-[#333333]">Dashboard, Branding &amp; Documentation</h3>
+                </div>
+                <table class="w-full text-sm">
+                    <tbody>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333] w-1/3">HTML Dashboard</td>
+                            <td class="py-2 text-gray-600">Interactive dashboard with TailwindCSS + Alpine.js. Summary cards, filterable results table, version source badges (Website / Packagist / Private Repo), module documentation, supported vendors with private repo column, known limitations. Works offline via inlined JSON data.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">Dowlis Branding</td>
+                            <td class="py-2 text-gray-600">All "Cisco Merchandise Store" references renamed to "Dowlis Merchandise Store". Squared-off design (no rounded corners). Dowlis colour palette applied: <code class="bg-gray-100 px-1 text-xs">#1c69af</code> (primary blue), <code class="bg-gray-100 px-1 text-xs">#2a7ec2</code> (light accent), <code class="bg-gray-100 px-1 text-xs">#154f87</code> (hover), <code class="bg-gray-100 px-1 text-xs">#333333</code> (dark neutral).</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">README.md</td>
+                            <td class="py-2 text-gray-600">Updated for v1.2.0 with private Composer repo support, three version sources, private repo vendor table, auth.json integration, updated known limitations.</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 pr-4 font-medium text-[#333333]">CHANGELOG.md</td>
+                            <td class="py-2 text-gray-600">v1.2.0 entry with private repo support, multi-format Satis resolution, auth expired detection, XTENTO working, smart repo filtering, Dowlis branding.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Criteria Met -->
+    <section class="max-w-5xl mx-auto px-6 pb-8">
+        <div class="bg-[#1c69af]/5 border border-[#1c69af]/20 p-6">
+            <h2 class="text-lg font-bold text-[#333333] mb-4">Acceptance Criteria &mdash; Verification</h2>
+
+            <h3 class="text-sm font-semibold text-[#1c69af] mb-3">Task 1: Finish PHP Tool</h3>
+            <table class="w-full text-sm mb-6">
+                <thead>
+                    <tr class="border-b border-[#1c69af]/20">
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs w-12">Met</th>
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Criterion</th>
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Evidence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-green-600 font-bold">Yes</td>
+                        <td class="px-3 py-2 font-medium text-[#333333]">Review existing implementation</td>
+                        <td class="px-3 py-2 text-gray-600">Found and fixed 2 bugs: getSupportedVendors() broken return format, XTENTO picking M1 version over M2.</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-green-600 font-bold">Yes</td>
+                        <td class="px-3 py-2 font-medium text-[#333333]">Complete missing functionality</td>
+                        <td class="px-3 py-2 text-gray-600">Added Packagist API fallback, Packagist-only tracking, private Composer repo support, Cloudflare detection, UNAVAILABLE status, version source tracking.</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-green-600 font-bold">Yes</td>
+                        <td class="px-3 py-2 font-medium text-[#333333]">Ensure reliable operation</td>
+                        <td class="px-3 py-2 text-gray-600">Tested against real Dowlis store composer.lock. 35 packages checked across 3 version sources. Ran successfully with clear results for all packages.</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-green-600 font-bold">Yes</td>
+                        <td class="px-3 py-2 font-medium text-[#333333]">Improve robustness</td>
+                        <td class="px-3 py-2 text-gray-600">3-tier fallback (website &rarr; private repo &rarr; Packagist). Cloudflare detection. Auth expired handling. Smart repo filtering to avoid false matches. Graceful error messaging throughout.</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-green-600 font-bold">Yes</td>
+                        <td class="px-3 py-2 font-medium text-[#333333]">Create README.md</td>
+                        <td class="px-3 py-2 text-gray-600">Full README.md with features, supported vendors (3 tables), installation, usage, command options, example output, version sources, architecture, known limitations, troubleshooting.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="text-sm font-semibold text-[#1c69af] mb-3">Task 2: PHP 8.4 Compatibility Scan</h3>
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="border-b border-[#1c69af]/20">
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs w-12">Met</th>
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Criterion</th>
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Evidence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-green-600 font-bold">Yes</td>
+                        <td class="px-3 py-2 font-medium text-[#333333]">PHP 8.4 compatibility status for all modules</td>
+                        <td class="px-3 py-2 text-gray-600">7,377 files scanned across 28 vendor groups. Every module categorised as PASS, WARN, or FAIL. 14 Amasty packages documented as UNKNOWN (auth expired).</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-green-600 font-bold">Yes</td>
+                        <td class="px-3 py-2 font-medium text-[#333333]">List all files needing changes</td>
+                        <td class="px-3 py-2 text-gray-600">33 specific file paths listed in the report for laminas, symfony, elasticsearch, and stripe. CSV contains 118 rows with per-file detail.</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-green-600 font-bold">Yes</td>
+                        <td class="px-3 py-2 font-medium text-[#333333]">Use SAST tool</td>
+                        <td class="px-3 py-2 text-gray-600">PHP_CodeSniffer 3.13.5 + PHPCompatibility 9.3.5 (industry-standard SAST for PHP version compatibility). Installed at <code class="bg-gray-100 px-1 text-xs">php-compat-scanner/</code>.</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-green-600 font-bold">Yes</td>
+                        <td class="px-3 py-2 font-medium text-[#333333]">Output as text and spreadsheet</td>
+                        <td class="px-3 py-2 text-gray-600">Text: <code class="bg-gray-100 px-1 text-xs">PHP-8.4-Compatibility-Report.md</code> (330 lines). Spreadsheet: <code class="bg-gray-100 px-1 text-xs">php84-compatibility-results.csv</code> (118 rows). Raw JSON: 28 vendor files.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- File Inventory -->
+    <section class="max-w-5xl mx-auto px-6 pb-8">
+        <div class="bg-white border border-gray-200 p-6">
+            <h2 class="text-lg font-bold text-[#333333] mb-4">Deliverable Inventory</h2>
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="bg-[#1c69af]/5 border-b border-[#1c69af]/20">
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">File</th>
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Purpose</th>
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Version</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 font-medium text-[#333333]" colspan="3"><span class="text-[#1c69af]">module-composer-vendor-checker/</span></td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-gray-600 pl-6"><code class="text-xs">src/Service/VersionChecker.php</code></td>
+                        <td class="px-3 py-2 text-gray-600">Core scraping engine, Packagist API, private repo queries</td>
+                        <td class="px-3 py-2 text-gray-600">v1.2.0</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-gray-600 pl-6"><code class="text-xs">src/Service/ComposerIntegration.php</code></td>
+                        <td class="px-3 py-2 text-gray-600">Lock + JSON + auth parsing, private repo map, report generation</td>
+                        <td class="px-3 py-2 text-gray-600">v1.2.0</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-gray-600 pl-6"><code class="text-xs">docs/index.html</code></td>
+                        <td class="px-3 py-2 text-gray-600">Interactive dashboard (TailwindCSS + Alpine.js, Dowlis palette)</td>
+                        <td class="px-3 py-2 text-gray-600">v1.2.0</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-gray-600 pl-6"><code class="text-xs">docs/results.json</code></td>
+                        <td class="px-3 py-2 text-gray-600">Machine-readable scan results (35 packages)</td>
+                        <td class="px-3 py-2 text-gray-600">v1.2.0</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-gray-600 pl-6"><code class="text-xs">docs/delivery-report.html</code></td>
+                        <td class="px-3 py-2 text-gray-600">This delivery report</td>
+                        <td class="px-3 py-2 text-gray-600">&mdash;</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-gray-600 pl-6"><code class="text-xs">README.md</code></td>
+                        <td class="px-3 py-2 text-gray-600">Full module documentation</td>
+                        <td class="px-3 py-2 text-gray-600">v1.2.0</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-gray-600 pl-6"><code class="text-xs">CHANGELOG.md</code></td>
+                        <td class="px-3 py-2 text-gray-600">Version history (v1.0.0, v1.1.0, v1.2.0)</td>
+                        <td class="px-3 py-2 text-gray-600">v1.2.0</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 font-medium text-[#333333]" colspan="3"><span class="text-[#1c69af]">vendor-check-runner/</span></td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-gray-600 pl-6"><code class="text-xs">run.php</code></td>
+                        <td class="px-3 py-2 text-gray-600">Standalone runner (passes composer.json + auth.json for private repos)</td>
+                        <td class="px-3 py-2 text-gray-600">v1.2.0</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 font-medium text-[#333333]" colspan="3"><span class="text-[#1c69af]">php-compat-scanner/</span></td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-gray-600 pl-6"><code class="text-xs">PHP-8.4-Compatibility-Report.md</code></td>
+                        <td class="px-3 py-2 text-gray-600">Full text report (330 lines, per-vendor breakdown, file lists, Amasty migration guide)</td>
+                        <td class="px-3 py-2 text-gray-600">&mdash;</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-gray-600 pl-6"><code class="text-xs">php84-compatibility-results.csv</code></td>
+                        <td class="px-3 py-2 text-gray-600">Spreadsheet output (118 rows, per-file detail)</td>
+                        <td class="px-3 py-2 text-gray-600">&mdash;</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2 text-gray-600 pl-6"><code class="text-xs">results/*.json</code></td>
+                        <td class="px-3 py-2 text-gray-600">Raw phpcs JSON output (28 vendor files)</td>
+                        <td class="px-3 py-2 text-gray-600">&mdash;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Recommendations -->
+    <section class="max-w-5xl mx-auto px-6 pb-8">
+        <div class="bg-white border border-gray-200 p-6">
+            <h2 class="text-lg font-bold text-[#333333] mb-4">Recommended Next Steps</h2>
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="bg-[#1c69af]/5 border-b border-[#1c69af]/20">
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs w-12">Priority</th>
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Action</th>
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Owner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-red-100 text-red-800">High</span></td>
+                        <td class="px-3 py-2 text-gray-700">Migrate Amasty Composer credentials to project-level keys (see report for steps)</td>
+                        <td class="px-3 py-2 text-gray-600">Client</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-red-100 text-red-800">High</span></td>
+                        <td class="px-3 py-2 text-gray-700">Verify Amasty subscription status &mdash; annual renewal required for updates</td>
+                        <td class="px-3 py-2 text-gray-600">Client</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800">Medium</span></td>
+                        <td class="px-3 py-2 text-gray-700">Re-run PHP 8.4 scan against 14 Amasty packages once new keys are in place</td>
+                        <td class="px-3 py-2 text-gray-600">GetJohn</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800">Medium</span></td>
+                        <td class="px-3 py-2 text-gray-700">Upgrade Magento to 2.4.7+ to resolve laminas/symfony/guzzle PHP 8.4 issues</td>
+                        <td class="px-3 py-2 text-gray-600">GetJohn</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-[#1c69af]/10 text-[#1c69af]">Low</span></td>
+                        <td class="px-3 py-2 text-gray-700">Update third-party modules: Justuno 1.8.2 &rarr; 1.9.1, Klaviyo 4.0.9 &rarr; 4.4.2, Stripe SDK</td>
+                        <td class="px-3 py-2 text-gray-600">GetJohn</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-[#1c69af]/10 text-[#1c69af]">Low</span></td>
+                        <td class="px-3 py-2 text-gray-700">Investigate MageWorx private repo auth &mdash; credentials may need renewal</td>
+                        <td class="px-3 py-2 text-gray-600">Client</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#333333] mt-4">
+        <div class="max-w-5xl mx-auto px-6 py-6">
+            <div class="flex items-center justify-between text-xs text-gray-400">
+                <div>GetJohn &mdash; Delivery Report &mdash; 11 February 2026</div>
+                <div>Dowlis Merchandise Store &mdash; Magento 2.4.5 Enterprise Cloud</div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>
