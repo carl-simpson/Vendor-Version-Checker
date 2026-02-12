@@ -224,22 +224,21 @@ class VersionChecker
                 $response = $e->getResponse();
                 $status = $response->getStatusCode();
 
-                // Header-based detection (most reliable) — cf-ray is present on all Cloudflare responses
-                if ($status === 403 && $response->hasHeader('cf-ray')) {
-                    $isCloudflareBlocked = true;
-                } elseif ($response->hasHeader('cf-mitigated') && $status === 403) {
+                if ($status === 403) {
+                    // Header-based detection (most reliable) — cf-ray is present on all Cloudflare responses
                     // cf-mitigated explicitly indicates active mitigation (challenge, block, etc.)
-                    $isCloudflareBlocked = true;
-                } else {
-                    // Body-based fallback for cached responses or edge cases where headers are stripped
-                    $body = (string) $response->getBody();
-                    if ($status === 403 && (
-                        strpos($body, 'Just a moment') !== false ||
-                        strpos($body, '_cf_chl_opt') !== false ||
-                        strpos($body, 'cf-browser-verification') !== false ||
-                        strpos($body, 'Checking your browser') !== false
-                    )) {
+                    if ($response->hasHeader('cf-ray') || $response->hasHeader('cf-mitigated')) {
                         $isCloudflareBlocked = true;
+                    } else {
+                        // Body-based fallback for cached responses or edge cases where headers are stripped
+                        $body = (string) $response->getBody();
+                        if (strpos($body, 'Just a moment') !== false ||
+                            strpos($body, '_cf_chl_opt') !== false ||
+                            strpos($body, 'cf-browser-verification') !== false ||
+                            strpos($body, 'Checking your browser') !== false
+                        ) {
+                            $isCloudflareBlocked = true;
+                        }
                     }
                 }
             }
@@ -248,9 +247,10 @@ class VersionChecker
             if ($packageName !== null) {
                 $version = $this->getPackagistVersion($packageName);
                 if ($version !== null) {
+                    $vendor = $this->getVendorFromPackage($packageName);
                     return [
                         'url' => $url,
-                        'vendor' => $this->getVendorFromPackage($packageName),
+                        'vendor' => $vendor ?? 'unknown',
                         'latest_version' => $version,
                         'changelog' => [],
                         'source' => 'packagist',
