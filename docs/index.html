@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Version Checker — GetJohn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased">
+
+<div x-data="dashboard()" x-init="loadResults()" class="min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-6 py-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900">Vendor Version Checker</h1>
+                    <p class="mt-1 text-sm text-gray-500">GetJohn &mdash; Composer Module v1.1.0</p>
+                </div>
+                <div class="text-right text-sm text-gray-500">
+                    <div>Cisco Merchandise Store</div>
+                    <div x-text="generatedAt ? 'Last checked: ' + generatedAt : 'Loading...'"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Summary Cards -->
+    <section class="max-w-6xl mx-auto px-6 py-8">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+                <div class="text-2xl font-bold text-gray-900" x-text="totalPackages">-</div>
+                <div class="text-xs text-gray-500 mt-1">Total Tracked</div>
+            </div>
+            <div class="bg-white rounded-lg border border-green-200 p-4">
+                <div class="text-2xl font-bold text-green-600" x-text="counts.upToDate">-</div>
+                <div class="text-xs text-gray-500 mt-1">Up to Date</div>
+            </div>
+            <div class="bg-white rounded-lg border border-amber-200 p-4">
+                <div class="text-2xl font-bold text-amber-600" x-text="counts.updateAvailable">-</div>
+                <div class="text-xs text-gray-500 mt-1">Updates Available</div>
+            </div>
+            <div class="bg-white rounded-lg border border-gray-300 p-4">
+                <div class="text-2xl font-bold text-gray-500" x-text="counts.unavailable">-</div>
+                <div class="text-xs text-gray-500 mt-1">Unavailable</div>
+            </div>
+            <div class="bg-white rounded-lg border border-red-200 p-4">
+                <div class="text-2xl font-bold text-red-600" x-text="counts.error">-</div>
+                <div class="text-xs text-gray-500 mt-1">Errors</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="max-w-6xl mx-auto px-6">
+        <div class="flex gap-2 flex-wrap">
+            <button @click="filter = 'all'"
+                    :class="filter === 'all' ? 'bg-gray-900 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'"
+                    class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors">
+                All <span class="ml-1 opacity-60" x-text="totalPackages"></span>
+            </button>
+            <button @click="filter = 'UPDATE_AVAILABLE'"
+                    :class="filter === 'UPDATE_AVAILABLE' ? 'bg-amber-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'"
+                    class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors">
+                Updates <span class="ml-1 opacity-60" x-text="counts.updateAvailable"></span>
+            </button>
+            <button @click="filter = 'UP_TO_DATE'"
+                    :class="filter === 'UP_TO_DATE' ? 'bg-green-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'"
+                    class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors">
+                Current <span class="ml-1 opacity-60" x-text="counts.upToDate"></span>
+            </button>
+            <button @click="filter = 'ERROR'"
+                    :class="filter === 'ERROR' ? 'bg-red-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'"
+                    class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors">
+                Errors <span class="ml-1 opacity-60" x-text="counts.error"></span>
+            </button>
+            <button @click="filter = 'UNAVAILABLE'"
+                    :class="filter === 'UNAVAILABLE' ? 'bg-gray-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'"
+                    class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors">
+                Unavailable <span class="ml-1 opacity-60" x-text="counts.unavailable"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Results Table -->
+    <section class="max-w-6xl mx-auto px-6 py-6">
+        <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="bg-gray-50 border-b border-gray-200">
+                        <th class="text-left px-4 py-3 font-medium text-gray-600 w-8">Status</th>
+                        <th class="text-left px-4 py-3 font-medium text-gray-600">Package</th>
+                        <th class="text-left px-4 py-3 font-medium text-gray-600">Installed</th>
+                        <th class="text-left px-4 py-3 font-medium text-gray-600">Latest</th>
+                        <th class="text-left px-4 py-3 font-medium text-gray-600">Source</th>
+                        <th class="text-left px-4 py-3 font-medium text-gray-600">Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template x-for="result in filteredResults" :key="result.package">
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="px-4 py-3">
+                                <span x-show="result.status === 'UP_TO_DATE'" class="inline-block w-2.5 h-2.5 rounded-full bg-green-500" title="Up to date"></span>
+                                <span x-show="result.status === 'UPDATE_AVAILABLE'" class="inline-block w-2.5 h-2.5 rounded-full bg-amber-500" title="Update available"></span>
+                                <span x-show="result.status === 'ERROR'" class="inline-block w-2.5 h-2.5 rounded-full bg-red-500" title="Error"></span>
+                                <span x-show="result.status === 'UNAVAILABLE'" class="inline-block w-2.5 h-2.5 rounded-full bg-gray-400" title="Unavailable"></span>
+                                <span x-show="result.status === 'AHEAD_OF_VENDOR'" class="inline-block w-2.5 h-2.5 rounded-full bg-blue-500" title="Ahead of vendor"></span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="font-medium text-gray-900" x-text="result.package"></div>
+                                <a x-show="result.vendor_url" :href="result.vendor_url" target="_blank"
+                                   class="text-xs text-blue-600 hover:text-blue-800" x-text="getShortUrl(result.vendor_url)"></a>
+                            </td>
+                            <td class="px-4 py-3">
+                                <code class="text-xs bg-gray-100 px-1.5 py-0.5 rounded" x-text="result.installed_version"></code>
+                            </td>
+                            <td class="px-4 py-3">
+                                <template x-if="result.status === 'UPDATE_AVAILABLE'">
+                                    <code class="text-xs bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-medium" x-text="result.latest_version"></code>
+                                </template>
+                                <template x-if="result.status === 'UP_TO_DATE'">
+                                    <code class="text-xs bg-green-100 text-green-800 px-1.5 py-0.5 rounded" x-text="result.latest_version"></code>
+                                </template>
+                                <template x-if="result.status === 'ERROR'">
+                                    <span class="text-xs text-red-600">&mdash;</span>
+                                </template>
+                                <template x-if="result.status === 'UNAVAILABLE'">
+                                    <span class="text-xs text-gray-400">N/A</span>
+                                </template>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span x-show="result.source === 'vendor_website'" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">Website</span>
+                                <span x-show="result.source === 'packagist'" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-100 text-purple-800">Packagist</span>
+                                <span x-show="!result.source && result.status === 'ERROR'" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">Failed</span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span x-show="result.error && result.error.includes('Cloudflare')" class="text-xs text-red-500">Cloudflare blocked</span>
+                                <span x-show="result.error && result.error.includes('not found on Packagist')" class="text-xs text-gray-500">Private repo only</span>
+                                <span x-show="result.error && !result.error.includes('Cloudflare') && !result.error.includes('not found on Packagist') && !result.error.includes('No version')" class="text-xs text-red-500" x-text="result.error ? result.error.substring(0, 60) + '...' : ''"></span>
+                                <span x-show="result.error && result.error.includes('No version')" class="text-xs text-gray-500">No version on page</span>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Module Documentation -->
+    <section class="max-w-6xl mx-auto px-6 py-8 border-t border-gray-200 mt-4">
+        <h2 class="text-xl font-bold text-gray-900 mb-6">Module Documentation</h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- How It Works -->
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+                <h3 class="text-base font-semibold text-gray-900 mb-4">How It Works</h3>
+                <ol class="space-y-3 text-sm text-gray-700">
+                    <li class="flex gap-3">
+                        <span class="flex-none w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600">1</span>
+                        <span>Parses <code class="bg-gray-100 px-1 rounded">composer.lock</code> to identify installed third-party packages and their versions</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="flex-none w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600">2</span>
+                        <span>Matches packages against known vendor URL mappings and Packagist registry</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="flex-none w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600">3</span>
+                        <span>Scrapes vendor product pages using vendor-specific regex patterns to extract latest version</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="flex-none w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600">4</span>
+                        <span>Falls back to Packagist API when website scraping fails or returns no version</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="flex-none w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600">5</span>
+                        <span>Compares installed vs latest versions and generates the report</span>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Version Sources -->
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+                <h3 class="text-base font-semibold text-gray-900 mb-4">Version Sources</h3>
+                <div class="space-y-4 text-sm">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">Website</span>
+                            <span class="font-medium text-gray-900">Vendor Website Scraping</span>
+                        </div>
+                        <p class="text-gray-600 ml-[72px]">Directly scrapes the vendor's product page using HTTP requests and vendor-specific regex patterns. Most accurate but subject to Cloudflare protection and page structure changes.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-100 text-purple-800">Packagist</span>
+                            <span class="font-medium text-gray-900">Packagist API</span>
+                        </div>
+                        <p class="text-gray-600 ml-[72px]">Queries the public Packagist registry API. Used as a fallback for website scraping failures and as the primary source for packages not distributed via vendor websites.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">Failed</span>
+                            <span class="font-medium text-gray-900">Cloudflare / Private</span>
+                        </div>
+                        <p class="text-gray-600 ml-[72px]">Vendors behind Cloudflare Managed Challenge (Amasty, Aheadworks) or using private Composer repositories without public Packagist listings cannot be checked automatically.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Supported Vendors -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 mt-6">
+            <h3 class="text-base font-semibold text-gray-900 mb-4">Supported Vendors</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                <div>
+                    <div class="font-medium text-gray-900">Website Scraping</div>
+                    <ul class="mt-2 space-y-1 text-gray-600">
+                        <li>Amasty <span class="text-xs text-red-400">(CF blocked)</span></li>
+                        <li>Aheadworks <span class="text-xs text-red-400">(CF blocked)</span></li>
+                        <li>BSS Commerce</li>
+                        <li>MageMe</li>
+                        <li>Mageplaza</li>
+                        <li>MageWorx</li>
+                        <li>XTENTO</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="font-medium text-gray-900">Packagist API</div>
+                    <ul class="mt-2 space-y-1 text-gray-600">
+                        <li>Justuno</li>
+                        <li>Klaviyo</li>
+                        <li>ParadoxLabs</li>
+                        <li>Stripe</li>
+                        <li>TaxJar</li>
+                        <li>WebShopApps</li>
+                        <li>Yotpo</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="font-medium text-gray-900">Usage</div>
+                    <div class="mt-2 space-y-2 text-gray-600">
+                        <div>
+                            <code class="text-xs bg-gray-100 px-1.5 py-0.5 rounded">composer vendor:check</code>
+                            <div class="text-xs mt-0.5">Check all packages</div>
+                        </div>
+                        <div>
+                            <code class="text-xs bg-gray-100 px-1.5 py-0.5 rounded">composer vendor:check -v</code>
+                            <div class="text-xs mt-0.5">Verbose with changelogs</div>
+                        </div>
+                        <div>
+                            <code class="text-xs bg-gray-100 px-1.5 py-0.5 rounded">composer vendor:check --json</code>
+                            <div class="text-xs mt-0.5">JSON output for CI/CD</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="font-medium text-gray-900">Architecture</div>
+                    <ul class="mt-2 space-y-1 text-gray-600 text-xs">
+                        <li><code>ComposerPlugin.php</code> &mdash; Plugin entry</li>
+                        <li><code>CommandProvider.php</code> &mdash; CLI registration</li>
+                        <li><code>VendorCheckCommand.php</code> &mdash; Command logic</li>
+                        <li><code>VersionChecker.php</code> &mdash; Scraping engine</li>
+                        <li><code>ComposerIntegration.php</code> &mdash; Lock file parsing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Known Limitations -->
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mt-6">
+            <h3 class="text-base font-semibold text-amber-900 mb-3">Known Limitations</h3>
+            <ul class="space-y-2 text-sm text-amber-800">
+                <li><strong>Amasty &amp; Aheadworks</strong> &mdash; Protected by Cloudflare Managed Challenge v3. Requires JavaScript execution which HTTP clients cannot perform. Not available on public Packagist.</li>
+                <li><strong>MageWorx</strong> &mdash; Product pages do not display version numbers. Not available on public Packagist. Versions must be checked manually via their customer portal.</li>
+                <li><strong>Stripe Payments</strong> &mdash; The Magento module (<code>stripe/stripe-payments</code>) is distributed via Stripe's private Composer repository, not public Packagist.</li>
+                <li><strong>Website structure changes</strong> &mdash; Vendor-specific regex patterns may need updating if vendors redesign their product pages.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto px-6 py-8 border-t border-gray-200 mt-4">
+        <div class="flex items-center justify-between text-xs text-gray-400">
+            <div>GetJohn &mdash; Module Composer Vendor Checker v1.1.0</div>
+            <div>Cisco Merchandise Store &mdash; Magento 2.4.5 Enterprise Cloud</div>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+function dashboard() {
+    return {
+        results: [],
+        generatedAt: '',
+        totalPackages: 0,
+        filter: 'all',
+        counts: { upToDate: 0, updateAvailable: 0, unavailable: 0, error: 0 },
+
+        async loadResults() {
+            try {
+                const resp = await fetch('results.json');
+                const data = await resp.json();
+                this.results = data.results || [];
+                this.generatedAt = data.generated_at || '';
+                this.totalPackages = this.results.length;
+                this.counts = {
+                    upToDate: this.results.filter(r => r.status === 'UP_TO_DATE').length,
+                    updateAvailable: this.results.filter(r => r.status === 'UPDATE_AVAILABLE').length,
+                    unavailable: this.results.filter(r => r.status === 'UNAVAILABLE').length,
+                    error: this.results.filter(r => r.status === 'ERROR').length,
+                };
+            } catch (e) {
+                console.error('Failed to load results.json:', e);
+            }
+        },
+
+        get filteredResults() {
+            if (this.filter === 'all') return this.results;
+            return this.results.filter(r => r.status === this.filter);
+        },
+
+        getShortUrl(url) {
+            if (!url) return '';
+            try {
+                const u = new URL(url);
+                return u.hostname + u.pathname.substring(0, 30) + (u.pathname.length > 30 ? '...' : '');
+            } catch {
+                return url;
+            }
+        }
+    };
+}
+</script>
+
+</body>
+</html>
