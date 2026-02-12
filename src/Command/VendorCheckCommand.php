@@ -66,7 +66,7 @@ The <info>vendor:check</info> command checks vendor websites for the latest modu
 
 <info>Supported Vendors:</info>
   Amasty, Mageplaza, BSS Commerce, Aheadworks, MageMe, Mageworx, XTENTO
-
+  
   Note: When checking all packages, only packages from supported vendors will be checked.
   Use -v to see the list of supported vendors.
 
@@ -130,6 +130,12 @@ EOF
             file_exists($authJsonPath) ? $authJsonPath : null
         );
 
+        // Parse --packages filter
+        $packageFilter = [];
+        if ($packages) {
+            $packageFilter = array_map('trim', explode(',', $packages));
+        }
+
         if (!$jsonOutput) {
             $output->writeln("<info>Checking packages from:</info> $path");
             if ($verbose) {
@@ -142,7 +148,7 @@ EOF
             $output->writeln('');
         }
 
-        $results = $integration->checkForUpdates($verbose);
+        $results = $integration->checkForUpdates($verbose, $packageFilter);
 
         if ($jsonOutput) {
             $output->writeln(json_encode($results, JSON_PRETTY_PRINT));
@@ -151,7 +157,7 @@ EOF
             $output->writeln($report);
         }
 
-        return 0;
+        return $this->getExitCode($results);
     }
 
     /**
@@ -166,7 +172,7 @@ EOF
     protected function checkSingleUrl($url, OutputInterface $output, $verbose, $jsonOutput)
     {
         $checker = new VersionChecker();
-
+        
         if (!$jsonOutput) {
             $output->writeln("<info>Checking vendor URL:</info> $url");
             $output->writeln('');
@@ -174,13 +180,13 @@ EOF
 
         try {
             $result = $checker->getVendorVersion($url);
-
+            
             if ($jsonOutput) {
                 $output->writeln(json_encode($result, JSON_PRETTY_PRINT));
             } else {
                 $this->displaySingleResult($result, $output, $verbose);
             }
-
+            
             return 0;
         } catch (\Exception $e) {
             if ($jsonOutput) {
@@ -190,6 +196,35 @@ EOF
             }
             return 1;
         }
+    }
+
+    /**
+     * Determine exit code from results for CI/CD pipelines.
+     *
+     * @param array $results
+     * @return int 0 = all current, 1 = updates available, 2 = errors
+     */
+    protected function getExitCode(array $results)
+    {
+        $hasErrors = false;
+        $hasUpdates = false;
+
+        foreach ($results as $result) {
+            if ($result['status'] === 'ERROR') {
+                $hasErrors = true;
+            }
+            if ($result['status'] === 'UPDATE_AVAILABLE') {
+                $hasUpdates = true;
+            }
+        }
+
+        if ($hasErrors) {
+            return 2;
+        }
+        if ($hasUpdates) {
+            return 1;
+        }
+        return 0;
     }
 
     /**
@@ -207,7 +242,7 @@ EOF
         }
 
         $output->writeln("<info>Latest Version:</info> {$result['latest_version']}");
-
+        
         if ($verbose && isset($result['changelog'])) {
             $output->writeln('');
             $output->writeln('<info>Recent Changes:</info>');
