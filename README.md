@@ -7,7 +7,7 @@ A Composer plugin that checks vendor websites, the Packagist API, and private Co
 `composer update` doesn't always show the true latest version of a third-party module. This happens when:
 
 - The vendor hasn't pushed the update to Packagist yet
-- The Magento Marketplace listing is out of sync
+- The version available through Composer repositories lags behind the vendor's latest release
 - The module is distributed via a private Composer repository with restricted access
 
 This tool checks **vendor websites**, the **Packagist API**, and **private Composer repositories** (with auth.json credentials) to give you the complete picture.

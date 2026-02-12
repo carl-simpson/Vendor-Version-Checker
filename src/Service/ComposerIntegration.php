@@ -159,7 +159,7 @@ class ComposerIntegration
             if ($skipThis) {
                 continue;
             }
-            if (isset($httpBasic[$host])) {
+            if (isset($httpBasic[$host]['username'], $httpBasic[$host]['password'])) {
                 $privateRepos[] = [
                     'url' => $url,
                     'host' => $host,

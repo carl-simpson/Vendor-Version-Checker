@@ -107,11 +107,13 @@ class VersionChecker
                 $response = $result['value'];
                 $this->bodyCache[$url] = [
                     'status' => $response->getStatusCode(),
+                    'headers' => $response->getHeaders(),
                     'body' => (string) $response->getBody(),
                 ];
             } else {
                 $this->bodyCache[$url] = [
                     'status' => 0,
+                    'headers' => [],
                     'body' => '',
                     'network_error' => $result['reason']->getMessage(),
                 ];
@@ -142,7 +144,7 @@ class VersionChecker
             if ($cached['status'] >= 400) {
                 throw RequestException::create(
                     new Psr7Request('GET', $url),
-                    new Psr7Response($cached['status'], [], $cached['body'])
+                    new Psr7Response($cached['status'], $cached['headers'] ?? [], $cached['body'])
                 );
             }
 
@@ -216,13 +218,39 @@ class VersionChecker
             ];
 
         } catch (GuzzleException $e) {
+            // Check for Cloudflare protection before attempting Packagist fallback
+            $isCloudflareBlocked = false;
+            if ($e instanceof RequestException && $e->hasResponse()) {
+                $response = $e->getResponse();
+                $status = $response->getStatusCode();
+
+                if ($status === 403) {
+                    // Header-based detection (most reliable) — cf-ray is present on all Cloudflare responses
+                    // cf-mitigated explicitly indicates active mitigation (challenge, block, etc.)
+                    if ($response->hasHeader('cf-ray') || $response->hasHeader('cf-mitigated')) {
+                        $isCloudflareBlocked = true;
+                    } else {
+                        // Body-based fallback for cached responses or edge cases where headers are stripped
+                        $body = (string) $response->getBody();
+                        if (strpos($body, 'Just a moment') !== false ||
+                            strpos($body, '_cf_chl_opt') !== false ||
+                            strpos($body, 'cf-browser-verification') !== false ||
+                            strpos($body, 'Checking your browser') !== false
+                        ) {
+                            $isCloudflareBlocked = true;
+                        }
+                    }
+                }
+            }
+
             // Website unreachable (e.g., Cloudflare block) — try Packagist fallback
             if ($packageName !== null) {
                 $version = $this->getPackagistVersion($packageName);
                 if ($version !== null) {
+                    $vendor = $this->getVendorFromPackage($packageName);
                     return [
                         'url' => $url,
-                        'vendor' => $this->getVendorFromPackage($packageName),
+                        'vendor' => $vendor ?? 'unknown',
                         'latest_version' => $version,
                         'changelog' => [],
                         'source' => 'packagist',
@@ -231,17 +259,9 @@ class VersionChecker
                 }
             }
 
-            // Detect Cloudflare protection from response body
-            if ($e instanceof RequestException && $e->hasResponse()) {
-                $status = $e->getResponse()->getStatusCode();
-                $body = (string) $e->getResponse()->getBody();
-                if ($status === 403 && (
-                    strpos($body, 'Just a moment') !== false ||
-                    strpos($body, '_cf_chl_opt') !== false ||
-                    strpos($body, 'cf-browser-verification') !== false
-                )) {
-                    throw new \Exception("Cloudflare protection detected on {$url} — website requires browser verification");
-                }
+            // Throw specific Cloudflare error after Packagist fallback attempt
+            if ($isCloudflareBlocked) {
+                throw new \Exception("Cloudflare protection detected on {$url} — website requires browser verification");
             }
 
             throw new \Exception("Failed to fetch {$url}: " . $e->getMessage());
@@ -258,6 +278,9 @@ class VersionChecker
      */
     public function getPrivateRepoVersion($packageName, $repoUrl, array $auth)
     {
+        if (!isset($auth['username'], $auth['password'])) {
+            return null;
+        }
         $repoUrl = rtrim($repoUrl, '/');
 
         // Try Composer V2 provider format first: p2/{vendor}/{package}.json
