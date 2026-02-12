@@ -7,6 +7,7 @@ namespace GetJohn\VendorChecker\Service;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Service to check vendor websites for module versions
@@ -148,13 +149,20 @@ class VersionChecker
                 }
             }
 
-            // Detect Cloudflare protection
-            $message = $e->getMessage();
-            if (strpos($message, '403') !== false && strpos($message, 'Just a moment') !== false) {
-                throw new \Exception("Cloudflare protection detected on {$url} — website requires browser verification");
+            // Detect Cloudflare protection from response body
+            if ($e instanceof RequestException && $e->hasResponse()) {
+                $status = $e->getResponse()->getStatusCode();
+                $body = (string) $e->getResponse()->getBody();
+                if ($status === 403 && (
+                    strpos($body, 'Just a moment') !== false ||
+                    strpos($body, '_cf_chl_opt') !== false ||
+                    strpos($body, 'cf-browser-verification') !== false
+                )) {
+                    throw new \Exception("Cloudflare protection detected on {$url} — website requires browser verification");
+                }
             }
 
-            throw new \Exception("Failed to fetch {$url}: " . $message);
+            throw new \Exception("Failed to fetch {$url}: " . $e->getMessage());
         }
     }
 
@@ -342,124 +350,6 @@ class VersionChecker
         }
 
         return null;
-    }
-
-    /**
-     * Check multiple packages from various sources
-     *
-     * @param array $packages
-     * @param array $options
-     * @return array
-     */
-    public function checkMultiplePackages(array $packages, array $options = [])
-    {
-        $results = [];
-
-        foreach ($packages as $package) {
-            $packageResult = [
-                'package' => $package
-            ];
-
-            // Check Composer
-            if (!empty($options['include_composer_show'])) {
-                $packageResult['composer_version'] = $this->getComposerVersion($package);
-            }
-
-            // Check Marketplace
-            if (!empty($options['include_marketplace'])) {
-                $packageResult['marketplace_version'] = $this->getMarketplaceVersion($package);
-            }
-
-            // Check Vendor Site
-            if (!empty($options['include_vendor_site']) && !empty($options['vendor_urls'][$package])) {
-                try {
-                    $vendorData = $this->getVendorVersion($options['vendor_urls'][$package]);
-                    $packageResult['vendor_version'] = $vendorData['latest_version'];
-                    $packageResult['vendor_url'] = $vendorData['url'];
-                } catch (\Exception $e) {
-                    $packageResult['vendor_version'] = 'Error: ' . $e->getMessage();
-                }
-            }
-
-            // Compare versions
-            if (isset($packageResult['composer_version'], $packageResult['marketplace_version'], $packageResult['vendor_version'])) {
-                $packageResult['all_match'] = (
-                    $packageResult['composer_version'] === $packageResult['marketplace_version'] &&
-                    $packageResult['marketplace_version'] === $packageResult['vendor_version']
-                );
-            }
-
-            $results[$package] = $packageResult;
-        }
-
-        return $results;
-    }
-
-    /**
-     * Get version from composer show command
-     *
-     * @param string $package
-     * @return string|null
-     */
-    protected function getComposerVersion($package, $publicOnly = false)
-    {
-	//TODO if($publicOnly) { .... somehow ignore auth.json and COMPOSER_AUTH }
-        $command = "composer show {$package} 2>/dev/null | grep 'versions' | head -n1";
-        $output = shell_exec($command);
-
-        if ($output && preg_match('/\*\s*([0-9.]+)/', $output, $matches)) {
-            return $matches[1];
-        }
-
-        return null;
-    }
-
-    /**
-     * Get version from Magento Marketplace
-     *
-     * @param string $package
-     * @return string|null
-     */
-    protected function getMarketplaceVersion($package)
-    {
-        // Convert composer package name to marketplace URL
-        $marketplaceUrl = $this->getMarketplaceUrl($package);
-
-        if (!$marketplaceUrl) {
-            return null;
-        }
-
-        try {
-            $response = $this->httpClient->get($marketplaceUrl);
-            $html = (string) $response->getBody();
-
-            // Look for version in marketplace page
-            if (preg_match('/Latest\s+Version[:\s]+v?(\d+\.\d+\.\d+)/i', $html, $matches)) {
-                return $matches[1];
-            }
-
-            if (preg_match('/"version":\s*"([0-9.]+)"/', $html, $matches)) {
-                return $matches[1];
-            }
-
-        } catch (\Exception $e) {
-            return null;
-        }
-
-        return null;
-    }
-
-    /**
-     * Convert composer package name to marketplace URL
-     *
-     * @param string $package
-     * @return string|null
-     */
-    protected function getMarketplaceUrl($package)
-    {
-        // This is a simplified version - you may need to maintain a mapping
-        $packageName = str_replace(['/', '-'], '', $package);
-        return "https://commercemarketplace.adobe.com/{$packageName}.html";
     }
 
     /**
