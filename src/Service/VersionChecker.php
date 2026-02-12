@@ -278,6 +278,9 @@ class VersionChecker
      */
     public function getPrivateRepoVersion($packageName, $repoUrl, array $auth)
     {
+        if (!isset($auth['username'], $auth['password'])) {
+            return null;
+        }
         $repoUrl = rtrim($repoUrl, '/');
 
         // Try Composer V2 provider format first: p2/{vendor}/{package}.json
