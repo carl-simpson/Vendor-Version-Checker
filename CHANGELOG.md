@@ -2,6 +2,30 @@
 
 All notable changes to the GetJohn Vendor Version Checker module are documented here.
 
+## v1.2.0 — 2026-02-11
+
+### New Features
+
+- **Private Composer repository support** — Auto-detects private repos from `composer.json` repository definitions and authenticates using `auth.json` credentials. Queries private Satis/Composer repos with HTTP basic auth to resolve latest stable versions.
+- **Multi-format Satis resolution** — Supports V2 (`p2/`), V1 (`p/`), full `packages.json`, and Satis provider-includes with hash-based URL resolution.
+- **Private Repo source badge** — Dashboard and report now display `[via Private Repo]` for versions resolved from private Composer repos.
+- **Auth expired detection** — When private repo queries fail, the report shows "auth may be expired" with clear guidance instead of generic error messages.
+
+### Improvements
+
+- **Smart repo filtering** — Skips `repo.magento.com`, `marketplace.magento.com`, and internal Satis/GetJohn repos to avoid matching Magento core packages as private repo candidates.
+- **XTENTO private repo working** — Successfully resolves versions for `xtento/pdfcustomizer` (2.14.9 → 2.17.0) and `xtento/xtcore` (2.17.0 → 2.21.0) via `dowlis.repo.xtento.com`.
+- **Dashboard updated** — HTML dashboard reflects all v1.2.0 findings: Private Repo vendor column, updated Known Limitations with Amasty key migration notes, auth expired status in Notes column.
+- **Renamed branding** — All "Cisco Merchandise Store" references updated to "Dowlis Merchandise Store".
+
+### Known Limitations
+
+- **Amasty** — Private repo (`composer.amasty.com`) returns 403. Global Composer keys deprecated 1 Jan 2026. Requires project-level keys from Amasty customer portal.
+- **MageWorx** — Private repo (`packages.mageworx.com`) credentials present but returning errors. Auth may be expired.
+- **Aheadworks** — Private repo (`dist.aheadworks.com`) credentials present but repo format not yet verified.
+
+---
+
 ## v1.1.0 — 2026-02-11
 
 ### Bug Fixes
@@ -19,7 +43,7 @@ All notable changes to the GetJohn Vendor Version Checker module are documented 
 
 ### Expanded Package Coverage
 
-Added URL mappings and Packagist tracking for the Cisco Merchandise Store project:
+Added URL mappings and Packagist tracking for the Dowlis Merchandise Store project:
 
 **New vendor website mappings:**
 - `amasty/gdpr-cookie` — GDPR Cookie Compliance
