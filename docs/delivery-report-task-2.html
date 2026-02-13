@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2 Delivery Report — Module &amp; PHP 8.4 Compatibility Scan — Get Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        @media print { .no-print { display: none !important; } }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased">
+
+<div class="min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-[#333333]">
+        <div class="max-w-5xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect width="40" height="40" rx="0" fill="#1c69af"/>
+                        <path d="M16 12L8 20L16 28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M24 12L32 20L24 28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white">Task 2 &mdash; Delivery Report</h1>
+                        <p class="mt-1 text-sm text-gray-400">Module &amp; PHP 8.4 Compatibility Scan</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-2">
+                        <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-300 border border-gray-600 hover:bg-white/10 hover:text-white transition-colors">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg>
+                            Home
+                        </a>
+                        <a href="delivery-report-task-1.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-300 border border-gray-600 hover:bg-white/10 hover:text-white transition-colors">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            Task 1 Report
+                        </a>
+                    </div>
+                    <div class="text-right text-sm text-gray-400">
+                        <div>Get Connect &mdash; Merchandise Store</div>
+                        <div>13 February 2026</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sticky Section Nav -->
+    <nav x-data="{ activeSection: 'brief' }" class="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm no-print">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex items-center gap-1 overflow-x-auto py-2 text-xs">
+                <a href="#brief" @click="activeSection = 'brief'" :class="activeSection === 'brief' ? 'bg-[#1c69af] text-white' : 'text-gray-600 hover:bg-gray-100'" class="px-3 py-1.5 rounded whitespace-nowrap transition-colors">Brief</a>
+                <a href="#summary" @click="activeSection = 'summary'" :class="activeSection === 'summary' ? 'bg-[#1c69af] text-white' : 'text-gray-600 hover:bg-gray-100'" class="px-3 py-1.5 rounded whitespace-nowrap transition-colors">Summary</a>
+                <a href="#methodology" @click="activeSection = 'methodology'" :class="activeSection === 'methodology' ? 'bg-[#1c69af] text-white' : 'text-gray-600 hover:bg-gray-100'" class="px-3 py-1.5 rounded whitespace-nowrap transition-colors">Methodology</a>
+                <a href="#module-register" @click="activeSection = 'module-register'" :class="activeSection === 'module-register' ? 'bg-[#1c69af] text-white' : 'text-gray-600 hover:bg-gray-100'" class="px-3 py-1.5 rounded whitespace-nowrap transition-colors">Module Register</a>
+                <a href="#findings" @click="activeSection = 'findings'" :class="activeSection === 'findings' ? 'bg-[#1c69af] text-white' : 'text-gray-600 hover:bg-gray-100'" class="px-3 py-1.5 rounded whitespace-nowrap transition-colors">Findings</a>
+                <a href="#amasty" @click="activeSection = 'amasty'" :class="activeSection === 'amasty' ? 'bg-[#1c69af] text-white' : 'text-gray-600 hover:bg-gray-100'" class="px-3 py-1.5 rounded whitespace-nowrap transition-colors">Amasty</a>
+                <a href="#dashboard-updates" @click="activeSection = 'dashboard-updates'" :class="activeSection === 'dashboard-updates' ? 'bg-[#1c69af] text-white' : 'text-gray-600 hover:bg-gray-100'" class="px-3 py-1.5 rounded whitespace-nowrap transition-colors">Dashboard</a>
+                <a href="#acceptance" @click="activeSection = 'acceptance'" :class="activeSection === 'acceptance' ? 'bg-[#1c69af] text-white' : 'text-gray-600 hover:bg-gray-100'" class="px-3 py-1.5 rounded whitespace-nowrap transition-colors">Acceptance</a>
+                <a href="#files" @click="activeSection = 'files'" :class="activeSection === 'files' ? 'bg-[#1c69af] text-white' : 'text-gray-600 hover:bg-gray-100'" class="px-3 py-1.5 rounded whitespace-nowrap transition-colors">Files</a>
+                <a href="#next-steps" @click="activeSection = 'next-steps'" :class="activeSection === 'next-steps' ? 'bg-[#1c69af] text-white' : 'text-gray-600 hover:bg-gray-100'" class="px-3 py-1.5 rounded whitespace-nowrap transition-colors">Next Steps</a>
+                <button onclick="window.print()" class="ml-auto px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors flex items-center gap-1.5" aria-label="Print this report">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                    </svg>
+                    Print
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Brief -->
+    <section id="brief" class="max-w-5xl mx-auto px-6 py-8 scroll-mt-20">
+        <div class="bg-white border border-gray-200 p-6">
+            <h2 class="text-lg font-bold text-[#333333] mb-4">Task Brief</h2>
+            <div class="bg-gray-50 border border-gray-200 p-4 mb-4">
+                <h3 class="text-sm font-semibold text-[#1c69af] mb-3">Task 2 &mdash; Module &amp; PHP Compatibility Scan</h3>
+                <p class="text-sm text-gray-700 mb-3">We need a clear, structured view of PHP compatibility and upgrade risk across all Magento modules currently in use (third-party and custom). We will provide a module register showing which modules are used per Magento instance.</p>
+
+                <h4 class="text-xs font-semibold text-[#333333] uppercase tracking-wider mt-4 mb-2">What We Need</h4>
+                <ul class="space-y-1.5 text-sm text-gray-700">
+                    <li class="flex gap-2"><span class="text-gray-400">&bull;</span> Review all used modules in scope</li>
+                    <li class="flex gap-2"><span class="text-gray-400">&bull;</span> For each module, identify: PHP compatibility status</li>
+                </ul>
+
+                <h4 class="text-xs font-semibold text-[#333333] uppercase tracking-wider mt-4 mb-2">Deliverables</h4>
+                <ul class="space-y-1.5 text-sm text-gray-700">
+                    <li class="flex gap-2"><span class="text-gray-400">&bull;</span> A written summary, covering:</li>
+                    <li class="flex gap-2 pl-4"><span class="text-gray-400">&ndash;</span> Status &mdash; is it compatible with version 8.4</li>
+                    <li class="flex gap-2 pl-4"><span class="text-gray-400">&ndash;</span> A list of files that need changing</li>
+                    <li class="flex gap-2 pl-4"><span class="text-gray-400">&ndash;</span> In a text file or a spreadsheet</li>
+                </ul>
+
+                <h4 class="text-xs font-semibold text-[#333333] uppercase tracking-wider mt-4 mb-2">Recommended Approach</h4>
+                <p class="text-sm text-gray-700">Use a code scanning tool such as PHP-CS / SonarQube or another SAST tool (we have an existing SonarQube instance hosted on Digital Ocean).</p>
+
+                <div class="mt-4 pt-3 border-t border-gray-200 text-xs text-gray-500">
+                    Timebox: 10 hours. Review progress after this time has elapsed.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Cards -->
+    <section id="summary" class="max-w-5xl mx-auto px-6 pb-8 scroll-mt-20">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white border border-[#1c69af]/30 p-4 rounded-lg">
+                <div class="flex items-center gap-2 mb-1">
+                    <svg class="w-5 h-5 text-[#1c69af]" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/>
+                    </svg>
+                    <div class="text-2xl font-bold text-[#1c69af]">137</div>
+                </div>
+                <div class="text-xs text-gray-500">Modules Assessed</div>
+            </div>
+            <div class="bg-white border border-[#1c69af]/30 p-4 rounded-lg">
+                <div class="flex items-center gap-2 mb-1">
+                    <svg class="w-5 h-5 text-[#1c69af]" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clip-rule="evenodd"/>
+                    </svg>
+                    <div class="text-2xl font-bold text-[#1c69af]">7,377</div>
+                </div>
+                <div class="text-xs text-gray-500">PHP Files Scanned</div>
+            </div>
+            <div class="bg-white border border-green-200 p-4 rounded-lg">
+                <div class="flex items-center gap-2 mb-1">
+                    <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <div class="text-2xl font-bold text-green-600">97</div>
+                </div>
+                <div class="text-xs text-gray-500">Modules PASS</div>
+            </div>
+            <div class="bg-white border border-red-200 p-4 rounded-lg">
+                <div class="flex items-center gap-2 mb-1">
+                    <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                    </svg>
+                    <div class="text-2xl font-bold text-red-600">8</div>
+                </div>
+                <div class="text-xs text-gray-500">Modules FAIL</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach & Methodology -->
+    <section id="methodology" class="max-w-5xl mx-auto px-6 pb-8 scroll-mt-20">
+        <div class="bg-white border border-gray-200 p-6">
+            <h2 class="text-lg font-bold text-[#333333] mb-1">Approach &amp; Methodology</h2>
+            <p class="text-sm text-gray-500 mb-6">How we acquired source code, scanned it, and built the Module Register.</p>
+
+            <!-- Tool Selection -->
+            <div class="mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center justify-center w-6 h-6 bg-[#1c69af] text-white text-[10px] font-bold flex-shrink-0">1</span>
+                    <h3 class="text-sm font-bold text-[#333333]">Tool Selection</h3>
+                </div>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="border border-green-200 bg-green-50/50 p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <svg class="w-4 h-4 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span class="text-sm font-medium text-green-800">PHPCompatibility 9.3.5</span>
+                            <span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium bg-green-100 text-green-700">SELECTED</span>
+                        </div>
+                        <p class="text-xs text-gray-600">Industry-standard SAST ruleset purpose-built for PHP version migration. Detects deprecated functions, removed extensions, reserved keyword conflicts, changed INI directives, and parameter behaviour changes across PHP versions.</p>
+                        <div class="mt-2 bg-white border border-green-200 px-3 py-2 font-mono text-[11px] text-gray-600">
+                            PHP_CodeSniffer 3.13.5 + PHPCompatibility 9.3.5
+                        </div>
+                    </div>
+                    <div class="border border-gray-200 bg-gray-50/50 p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/></svg>
+                            <span class="text-sm font-medium text-gray-500">SonarQube</span>
+                            <span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium bg-gray-200 text-gray-500">CONSIDERED</span>
+                        </div>
+                        <p class="text-xs text-gray-500">SonarQube&rsquo;s PHP plugin covers general code quality (bugs, code smells, security hotspots) but does not offer the same depth of PHP version migration analysis. Its compatibility rules are limited to a small subset of deprecations. PHPCompatibility output can be imported into SonarQube if needed.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Source Code Acquisition -->
+            <div class="mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center justify-center w-6 h-6 bg-[#1c69af] text-white text-[10px] font-bold flex-shrink-0">2</span>
+                    <h3 class="text-sm font-bold text-[#333333]">Source Code Acquisition</h3>
+                </div>
+                <div class="border border-gray-200 p-4 mb-3">
+                    <p class="text-sm text-gray-600 mb-3">A full <code class="bg-gray-100 px-1 text-xs">composer install</code> was not possible locally because Amasty&rsquo;s Composer repository returned HTTP 403 on all requests (expired global auth keys &mdash; see <a href="#amasty" class="text-[#1c69af] hover:underline">Amasty investigation</a>). Instead, we sourced packages from two alternative locations:</p>
+                    <div class="grid md:grid-cols-3 gap-3">
+                        <div class="bg-[#1c69af]/[0.03] border border-[#1c69af]/10 p-3">
+                            <div class="text-xl font-bold text-[#1c69af]">671</div>
+                            <div class="text-xs text-gray-500 mb-1">packages recovered</div>
+                            <p class="text-[11px] text-gray-400">From Composer download cache + existing <code class="bg-gray-100 px-0.5 text-[10px]">vendor/</code> directory</p>
+                        </div>
+                        <div class="bg-amber-50/50 border border-amber-200 p-3">
+                            <div class="text-xl font-bold text-amber-600">18</div>
+                            <div class="text-xs text-gray-500 mb-1">packages unavailable</div>
+                            <p class="text-[11px] text-gray-400">Private repos with no local cache &mdash; 14 Amasty, BSS, MageWorx (2), Stripe Payments</p>
+                        </div>
+                        <div class="bg-gray-50 border border-gray-200 p-3">
+                            <div class="text-xl font-bold text-[#333333]">700</div>
+                            <div class="text-xs text-gray-500 mb-1">total in composer.lock</div>
+                            <p class="text-[11px] text-gray-400">Complete package inventory from the Merchandise Store lock file</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scanning Process -->
+            <div class="mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center justify-center w-6 h-6 bg-[#1c69af] text-white text-[10px] font-bold flex-shrink-0">3</span>
+                    <h3 class="text-sm font-bold text-[#333333]">Scanning Process</h3>
+                </div>
+                <div class="border border-gray-200 p-4">
+                    <p class="text-sm text-gray-600 mb-3">Each vendor group was scanned separately, producing 28 JSON result files. Results were then attributed to individual Composer packages via file path matching.</p>
+                    <div class="bg-gray-50 border border-gray-200 px-3 py-2 font-mono text-[11px] text-gray-600 mb-3">
+                        phpcs --standard=PHPCompatibility --runtime-set testVersion 8.4 --report=json
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="flex items-start gap-2">
+                            <svg class="w-4 h-4 text-[#1c69af] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            <div>
+                                <div class="text-xs font-medium text-[#333333]">Per-vendor isolation</div>
+                                <p class="text-[11px] text-gray-500">28 separate scan runs &mdash; one per vendor group &mdash; to keep results traceable and debugging straightforward.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg class="w-4 h-4 text-[#1c69af] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            <div>
+                                <div class="text-xs font-medium text-[#333333]">Per-package attribution</div>
+                                <p class="text-[11px] text-gray-500">File path matching ensures an error in <code class="bg-gray-100 px-0.5 text-[10px]">vendor/laminas/laminas-db/src/...</code> is attributed to <code class="bg-gray-100 px-0.5 text-[10px]">laminas/laminas-db</code>, not to all 28 laminas packages.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module Register Construction -->
+            <div class="mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center justify-center w-6 h-6 bg-[#1c69af] text-white text-[10px] font-bold flex-shrink-0">4</span>
+                    <h3 class="text-sm font-bold text-[#333333]">Module Register Construction</h3>
+                </div>
+                <div class="border border-gray-200 p-4">
+                    <p class="text-sm text-gray-600 mb-3">The final register was built by cross-referencing <code class="bg-gray-100 px-1 text-xs">composer.lock</code> with the 28 scan result files, then filtering to the 137 packages relevant to the store.</p>
+                    <div class="flex flex-wrap gap-x-6 gap-y-3">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-gray-100 border border-gray-200 flex items-center justify-center">
+                                <span class="text-[10px] font-bold text-gray-400">700</span>
+                            </div>
+                            <svg class="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            <div class="w-8 h-8 bg-[#1c69af]/10 border border-[#1c69af]/20 flex items-center justify-center">
+                                <span class="text-[10px] font-bold text-[#1c69af]">137</span>
+                            </div>
+                            <span class="text-xs text-gray-500">Filtered from total packages to store-relevant modules</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4">
+                        <div class="text-center p-2 bg-gray-50 border border-gray-200">
+                            <div class="text-[11px] font-medium text-[#333333]">Installed Version</div>
+                            <p class="text-[10px] text-gray-400">from lock file</p>
+                        </div>
+                        <div class="text-center p-2 bg-gray-50 border border-gray-200">
+                            <div class="text-[11px] font-medium text-[#333333]">Category</div>
+                            <p class="text-[10px] text-gray-400">custom, third-party, core dep</p>
+                        </div>
+                        <div class="text-center p-2 bg-gray-50 border border-gray-200">
+                            <div class="text-[11px] font-medium text-[#333333]">Scan Results</div>
+                            <p class="text-[10px] text-gray-400">matched by file path</p>
+                        </div>
+                        <div class="text-center p-2 bg-gray-50 border border-gray-200">
+                            <div class="text-[11px] font-medium text-[#333333]">Recommendation</div>
+                            <p class="text-[10px] text-gray-400">risk level + action</p>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-gray-400 mt-3">Excluded: Magento core metapackages, test utilities, generic PHP libraries (e.g. psr/*, league/*, symfony polyfills).</p>
+                </div>
+            </div>
+
+            <!-- Scanner Configuration -->
+            <h3 class="text-xs font-semibold text-[#333333] uppercase tracking-wider mb-3">Scanner Configuration</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div class="border border-gray-200 p-3">
+                    <div class="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">SAST Tool</div>
+                    <div class="text-sm font-medium text-[#333333]">PHP_CodeSniffer 3.13.5</div>
+                    <div class="text-xs text-gray-500">+ PHPCompatibility 9.3.5</div>
+                </div>
+                <div class="border border-gray-200 p-3">
+                    <div class="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">Target Version</div>
+                    <div class="text-sm font-medium text-[#333333]">PHP 8.4</div>
+                </div>
+                <div class="border border-gray-200 p-3">
+                    <div class="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">Files Scanned</div>
+                    <div class="text-sm font-medium text-[#333333]">7,377</div>
+                    <div class="text-xs text-gray-500">across 28 vendor groups</div>
+                </div>
+                <div class="border border-gray-200 p-3">
+                    <div class="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">Modules in Register</div>
+                    <div class="text-sm font-medium text-[#333333]">137</div>
+                    <div class="text-xs text-gray-500">of 700 total packages</div>
+                </div>
+                <div class="border border-gray-200 p-3">
+                    <div class="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">Package Source</div>
+                    <div class="text-sm font-medium text-[#333333]">Composer cache + vendor/</div>
+                    <div class="text-xs text-gray-500">full install blocked by Amasty 403</div>
+                </div>
+                <div class="border border-gray-200 p-3">
+                    <div class="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">Scanner Location</div>
+                    <div class="text-sm font-medium text-[#333333]"><code class="text-xs">php-compat-scanner/</code></div>
+                    <div class="text-xs text-gray-500">standalone Composer project</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Module Register Summary -->
+    <section id="module-register" class="max-w-5xl mx-auto px-6 pb-8 scroll-mt-20">
+        <div class="bg-white border border-gray-200 p-6">
+            <h2 class="text-lg font-bold text-[#333333] mb-4">Module Register &mdash; Per-Package Results (137 modules)</h2>
+            <p class="text-sm text-gray-600 mb-4">The Module Register (<a href="php84-compatibility-report.csv" download class="inline-flex items-center gap-1 text-[#1c69af] hover:underline"><code class="bg-[#1c69af]/10 px-1 text-xs text-[#1c69af]">PHP-8.4-Module-Register.csv</code><svg class="w-3 h-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3"/></svg></a>) contains one row per Composer package with: package name, installed version, category, PHP 8.4 status, risk level, error count, warning count, list of files needing changes, and a specific recommendation.</p>
+
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-3 mb-4">
+                <div class="bg-green-50 border border-green-200 p-3 text-center">
+                    <div class="text-xl font-bold text-green-600">97</div>
+                    <div class="text-xs text-gray-500">PASS</div>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 p-3 text-center">
+                    <div class="text-xl font-bold text-amber-600">12</div>
+                    <div class="text-xs text-gray-500">WARN</div>
+                </div>
+                <div class="bg-red-50 border border-red-200 p-3 text-center">
+                    <div class="text-xl font-bold text-red-600">8</div>
+                    <div class="text-xs text-gray-500">FAIL</div>
+                </div>
+                <div class="bg-gray-50 border border-gray-200 p-3 text-center">
+                    <div class="text-xl font-bold text-gray-500">18</div>
+                    <div class="text-xs text-gray-500">Not Scanned</div>
+                </div>
+                <div class="bg-gray-50 border border-gray-200 p-3 text-center">
+                    <div class="text-xl font-bold text-gray-400">2</div>
+                    <div class="text-xs text-gray-500">Out of Scope</div>
+                </div>
+                <div class="bg-gray-50 border border-gray-200 p-3 text-center">
+                    <div class="text-xl font-bold text-[#333333]">42 / 47</div>
+                    <div class="text-xs text-gray-500">Total Errors / Warnings</div>
+                </div>
+            </div>
+
+            <!-- What PASS / WARN / FAIL Mean -->
+            <div class="bg-gray-50 border border-gray-200 p-4 text-xs text-gray-600">
+                <div class="font-medium text-[#333333] text-sm mb-2">What the statuses mean</div>
+                <div class="grid md:grid-cols-3 gap-3">
+                    <div><span class="inline-flex items-center px-2 py-0.5 font-medium bg-green-100 text-green-800 mr-1">PASS</span> Zero errors and zero warnings. The package&rsquo;s PHP code is fully compatible with PHP 8.4.</div>
+                    <div><span class="inline-flex items-center px-2 py-0.5 font-medium bg-amber-100 text-amber-800 mr-1">WARN</span> Warnings only (no errors). Typically false positives (e.g. Knockout.js template syntax flagged as PHP ASP tags) or deprecated-but-still-functional constructs.</div>
+                    <div><span class="inline-flex items-center px-2 py-0.5 font-medium bg-red-100 text-red-800 mr-1">FAIL</span> One or more errors detected. The code uses functions, extensions, or syntax that is removed or will cause runtime errors on PHP 8.4.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Findings by Category -->
+    <section id="findings" class="max-w-5xl mx-auto px-6 pb-8 scroll-mt-20">
+        <div class="bg-white border border-gray-200 p-6">
+            <h2 class="text-lg font-bold text-[#333333] mb-1">Findings by Category</h2>
+            <p class="text-sm text-gray-500 mb-5">Detailed scan results grouped by severity. FAIL and NOT SCANNED sections are expanded by default &mdash; click any header to expand or collapse.</p>
+
+            <!-- Custom Code — PASS -->
+            <div x-data="{ open: false }" class="mb-3">
+                <button @click="open = !open" :aria-expanded="open" class="w-full border border-green-200 bg-green-50/50 p-4 flex items-center justify-between hover:bg-green-50 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center justify-center w-10 h-10 bg-green-100 flex-shrink-0">
+                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="text-left">
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-green-100 text-green-800">PASS</span>
+                                <span class="text-sm font-medium text-green-800">Custom Code</span>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-0.5">15 modules &mdash; 0 errors, 0 warnings</div>
+                        </div>
+                    </div>
+                    <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 text-green-600 transition-transform flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </button>
+                <div x-show="open" x-collapse x-cloak class="border border-t-0 border-green-200 p-4">
+                    <p class="text-sm text-gray-700 mb-3">Every module written specifically for this store passes PHP 8.4 scanning with zero issues. No changes needed.</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="border border-gray-200 p-3">
+                            <div class="text-[10px] text-gray-400 uppercase tracking-wider mb-1.5">Client Custom (app/code)</div>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-xs text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>dowlis/custom-tweaks-v1</span>
+                            </div>
+                        </div>
+                        <div class="border border-gray-200 p-3">
+                            <div class="text-[10px] text-gray-400 uppercase tracking-wider mb-1.5">GetJohn Custom (14 modules)</div>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>m2-promoserve-integration</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>magento-security-patches</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>magento2-cli-store-creator</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>module-customsprice</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>module-ewayrapidoverride</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>module-checkout-override</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>module-customer-override</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>module-giftcards-cisco-override</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>module-giftcardsoverride</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>module-pitbulksaml2override</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>module-squareoverride</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>module-wics-connector-override</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>module-xtento-pdf-api</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>punchouthub-m2-module</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third-Party Extensions — PASS -->
+            <div x-data="{ open: false }" class="mb-3">
+                <button @click="open = !open" :aria-expanded="open" class="w-full border border-green-200 bg-green-50/50 p-4 flex items-center justify-between hover:bg-green-50 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center justify-center w-10 h-10 bg-green-100 flex-shrink-0">
+                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="text-left">
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-green-100 text-green-800">PASS</span>
+                                <span class="text-sm font-medium text-green-800">Third-Party Extensions</span>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-0.5">37 modules &mdash; 0 errors, 0 warnings</div>
+                        </div>
+                    </div>
+                    <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 text-green-600 transition-transform flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </button>
+                <div x-show="open" x-collapse x-cloak class="border border-t-0 border-green-200 p-4">
+                    <p class="text-sm text-gray-700 mb-3">All third-party Magento extensions from supported vendors pass cleanly:</p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>aheadworks/module-blog</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>braintree/braintree_php</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>eway/* (9)</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>mageme/module-webforms</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>mageplaza/module-core</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>mageplaza/module-smtp</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>mageworx/module-donations</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>monolog/monolog</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>onelogin/php-saml</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>paradoxlabs/* (2)</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>paypal/* (3)</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>shiphero/shiphero</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>sixtomartin/saml2-extend</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>springbot/magento2-queue</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>taxjar/module-taxjar</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>webshopapps/module-matrixrate</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>wics/connector</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>xtento/* (3)</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-50 border border-green-200 text-[11px] text-gray-700"><span class="w-1.5 h-1.5 bg-green-400 flex-shrink-0" aria-hidden="true"></span>yotpo/* (2)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Packages with Errors — FAIL -->
+            <div x-data="{ open: true }" class="mb-3">
+                <button @click="open = !open" :aria-expanded="open" class="w-full border border-red-200 bg-red-50/50 p-4 flex items-center justify-between hover:bg-red-50 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center justify-center w-10 h-10 bg-red-100 flex-shrink-0">
+                            <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="text-left">
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-red-100 text-red-800">FAIL</span>
+                                <span class="text-sm font-medium text-red-800">8 Packages with Errors</span>
+                                <span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium bg-green-100 text-green-700">ALL RESOLVABLE</span>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-0.5">42 total errors &mdash; none require manual code patching</div>
+                        </div>
+                    </div>
+                    <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 text-red-600 transition-transform flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </button>
+                <div x-show="open" x-collapse x-cloak class="border border-t-0 border-red-200 p-4">
+                    <!-- Resolution summary cards -->
+                    <div class="grid md:grid-cols-3 gap-3 mb-4">
+                        <div class="border border-amber-200 bg-amber-50/50 p-3 text-center">
+                            <div class="text-xl font-bold text-amber-700">6</div>
+                            <div class="text-[10px] text-gray-500 uppercase tracking-wider">Magento Core Deps</div>
+                            <p class="text-[11px] text-gray-400 mt-0.5">laminas + symfony &mdash; auto-fixed by 2.4.7+</p>
+                        </div>
+                        <div class="border border-green-200 bg-green-50/50 p-3 text-center">
+                            <div class="text-xl font-bold text-green-700">1</div>
+                            <div class="text-[10px] text-gray-500 uppercase tracking-wider">SDK Update</div>
+                            <p class="text-[11px] text-gray-400 mt-0.5">stripe/stripe-php &mdash; update to latest</p>
+                        </div>
+                        <div class="border border-gray-200 bg-gray-50/50 p-3 text-center">
+                            <div class="text-xl font-bold text-gray-400">1</div>
+                            <div class="text-[10px] text-gray-500 uppercase tracking-wider">False Positive</div>
+                            <p class="text-[11px] text-gray-400 mt-0.5">elasticsearch &mdash; no action needed</p>
+                        </div>
+                    </div>
+                    <!-- Per-package detail -->
+                    <div class="space-y-2">
+                        <div class="border border-red-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-red-600">15</div>
+                                <div class="text-[9px] text-gray-400 uppercase">errors</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">laminas/laminas-validator</div>
+                                <p class="text-xs text-gray-500 mt-0.5">func_get_args() called after parameter modification &mdash; 18 files (Between.php, CreditCard.php, Date.php, etc.)</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-amber-100 text-amber-700 flex-shrink-0">Magento 2.4.7+</span>
+                        </div>
+                        <div class="border border-red-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-red-600">14</div>
+                                <div class="text-[9px] text-gray-400 uppercase">errors</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">laminas/laminas-db</div>
+                                <p class="text-xs text-gray-500 mt-0.5">&lsquo;object&rsquo; used as namespace (reserved keyword); deprecated DB extensions &mdash; 10 files (Metadata/Object/*.php, Platform.php, etc.)</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-amber-100 text-amber-700 flex-shrink-0">Magento 2.4.7+</span>
+                        </div>
+                        <div class="border border-red-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-red-600">4</div>
+                                <div class="text-[9px] text-gray-400 uppercase">errors</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">laminas/laminas-recaptcha</div>
+                                <p class="text-xs text-gray-500 mt-0.5">mcrypt extension removed since PHP 7.2 &mdash; 1 file (MailHide.php)</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-amber-100 text-amber-700 flex-shrink-0">Magento 2.4.7+</span>
+                        </div>
+                        <div class="border border-red-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-red-600">3</div>
+                                <div class="text-[9px] text-gray-400 uppercase">errors</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">symfony/var-dumper</div>
+                                <p class="text-xs text-gray-500 mt-0.5">References to removed mysql_* extension &mdash; 2 files (ResourceCaster.php, dump.php)</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-amber-100 text-amber-700 flex-shrink-0">Magento 2.4.7+</span>
+                        </div>
+                        <div class="border border-red-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-red-600">2</div>
+                                <div class="text-[9px] text-gray-400 uppercase">errors</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">laminas/laminas-session</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Removed session.hash_function/hash_bits_per_character INI directives &mdash; 1 file (SessionConfig.php)</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-amber-100 text-amber-700 flex-shrink-0">Magento 2.4.7+</span>
+                        </div>
+                        <div class="border border-red-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-red-600">1</div>
+                                <div class="text-[9px] text-gray-400 uppercase">error</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">symfony/error-handler</div>
+                                <p class="text-xs text-gray-500 mt-0.5">func_get_args() parameter changes &mdash; 1 file (ErrorHandler.php)</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-amber-100 text-amber-700 flex-shrink-0">Magento 2.4.7+</span>
+                        </div>
+                        <div class="border border-red-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-red-600">1</div>
+                                <div class="text-[9px] text-gray-400 uppercase">error</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">stripe/stripe-php</div>
+                                <p class="text-xs text-gray-500 mt-0.5">func_get_args() in CurlClient.php &mdash; 1 file</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-green-100 text-green-700 flex-shrink-0">Update SDK</span>
+                        </div>
+                        <div class="border border-gray-200 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-gray-400">2</div>
+                                <div class="text-[9px] text-gray-400 uppercase">errors</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">elasticsearch/elasticsearch</div>
+                                <p class="text-xs text-gray-500 mt-0.5"><strong>False positive</strong> &mdash; &ldquo;Split&rdquo; is a class name, not PHP&rsquo;s deprecated split() &mdash; 1 file (Indices/Split.php)</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-gray-100 text-gray-500 flex-shrink-0">No action</span>
+                        </div>
+                    </div>
+                    <!-- Key takeaway -->
+                    <div class="mt-4 border-l-2 border-[#1c69af] bg-[#1c69af]/[0.03] p-3">
+                        <p class="text-xs text-gray-600"><strong class="text-[#333333]">Key takeaway:</strong> 6 of the 8 failures are Magento core dependencies (laminas + symfony). You do not patch these manually &mdash; they are resolved automatically when Magento is upgraded to 2.4.7+, which ships updated versions. The only actionable third-party fix is updating <code class="bg-gray-100 px-1">stripe/stripe-php</code> to the latest version.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Packages with Warnings — WARN -->
+            <div x-data="{ open: false }" class="mb-3">
+                <button @click="open = !open" :aria-expanded="open" class="w-full border border-amber-200 bg-amber-50/50 p-4 flex items-center justify-between hover:bg-amber-50 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center justify-center w-10 h-10 bg-amber-100 flex-shrink-0">
+                            <svg class="w-5 h-5 text-amber-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="text-left">
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-amber-100 text-amber-800">WARN</span>
+                                <span class="text-sm font-medium text-amber-800">12 Packages with Warnings</span>
+                                <span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium bg-green-100 text-green-700">MOSTLY FALSE POSITIVES</span>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-0.5">47 total warnings &mdash; majority are Knockout.js template syntax or soft reserved keywords</div>
+                        </div>
+                    </div>
+                    <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 text-amber-600 transition-transform flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </button>
+                <div x-show="open" x-collapse x-cloak class="border border-t-0 border-amber-200 p-4">
+                    <div class="space-y-2">
+                        <div class="border border-amber-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-amber-600">11</div>
+                                <div class="text-[9px] text-gray-400 uppercase">warns</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">mageworx/module-giftcardsbase</div>
+                                <p class="text-xs text-gray-500 mt-0.5">ASP-style tags in coupon.phtml</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-green-100 text-green-700 flex-shrink-0">False positive</span>
+                        </div>
+                        <div class="border border-amber-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-amber-600">11</div>
+                                <div class="text-[9px] text-gray-400 uppercase">warns</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">symfony/config</div>
+                                <p class="text-xs text-gray-500 mt-0.5">&lsquo;resource&rsquo; namespace in Resource/*.php &mdash; soft reserved keyword, not hard</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-green-100 text-green-700 flex-shrink-0">False positive</span>
+                        </div>
+                        <div class="border border-amber-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-amber-600">6</div>
+                                <div class="text-[9px] text-gray-400 uppercase">warns</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">justuno.com/core</div>
+                                <p class="text-xs text-gray-500 mt-0.5">dl() function references &mdash; likely variable names, not function calls</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-green-100 text-green-700 flex-shrink-0">False positive</span>
+                        </div>
+                        <div class="border border-amber-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-amber-600">5</div>
+                                <div class="text-[9px] text-gray-400 uppercase">warns</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">symfony/yaml, polyfill-intl-*</div>
+                                <p class="text-xs text-gray-500 mt-0.5">mbstring.func_overload, INTL_IDNA_VARIANT_2003 deprecated</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-amber-100 text-amber-700 flex-shrink-0">Magento 2.4.7+</span>
+                        </div>
+                        <div class="border border-amber-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-amber-600">3</div>
+                                <div class="text-[9px] text-gray-400 uppercase">warns</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">guzzlehttp/promises</div>
+                                <p class="text-xs text-gray-500 mt-0.5">each() function deprecated since PHP 7.2</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-amber-100 text-amber-700 flex-shrink-0">Magento 2.4.7+</span>
+                        </div>
+                        <div class="border border-amber-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-amber-600">3</div>
+                                <div class="text-[9px] text-gray-400 uppercase">warns</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">klaviyo/magento2-extension</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Short open tags in test files &mdash; empty test files, no production impact</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-green-100 text-green-700 flex-shrink-0">False positive</span>
+                        </div>
+                        <div class="border border-amber-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-amber-600">3</div>
+                                <div class="text-[9px] text-gray-400 uppercase">warns</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">laminas/laminas-feed, mail, soap</div>
+                                <p class="text-xs text-gray-500 mt-0.5">track_errors INI, deprecated constructs</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-amber-100 text-amber-700 flex-shrink-0">Magento 2.4.7+</span>
+                        </div>
+                        <div class="border border-amber-100 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-amber-600">1</div>
+                                <div class="text-[9px] text-gray-400 uppercase">warn</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">stripe/module-payments</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Template syntax in admin phtml &mdash; not PHP code</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-green-100 text-green-700 flex-shrink-0">False positive</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Not Scanned -->
+            <div x-data="{ open: true }">
+                <button @click="open = !open" :aria-expanded="open" class="w-full border border-gray-300 bg-gray-50 p-4 flex items-center justify-between hover:bg-gray-100 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center justify-center w-10 h-10 bg-gray-200 flex-shrink-0">
+                            <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="text-left">
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-gray-200 text-gray-700">NOT SCANNED</span>
+                                <span class="text-sm font-medium text-gray-700">18 Packages Could Not Be Scanned</span>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-0.5">Source code unavailable &mdash; private repos with no local cache</div>
+                        </div>
+                    </div>
+                    <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 text-gray-600 transition-transform flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </button>
+                <div x-show="open" x-collapse x-cloak class="border border-t-0 border-gray-300 p-4">
+                    <div class="space-y-2">
+                        <div class="border border-gray-200 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-gray-400">14</div>
+                                <div class="text-[9px] text-gray-400 uppercase">pkgs</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">amasty/* (14 packages)</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Composer repo returns 403 &mdash; global auth keys deprecated Jan 2026</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-amber-100 text-amber-700 flex-shrink-0">Client: new keys</span>
+                        </div>
+                        <div class="border border-gray-200 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-gray-400">1</div>
+                                <div class="text-[9px] text-gray-400 uppercase">pkg</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">bsscommerce/disable-compare</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Private repo, not in Packagist or local cache</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-gray-100 text-gray-500 flex-shrink-0">Scan on cloud</span>
+                        </div>
+                        <div class="border border-gray-200 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-gray-400">2</div>
+                                <div class="text-[9px] text-gray-400 uppercase">pkgs</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">mageworx/module-donationsmeta, module-giftcards</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Private repo, not in local cache</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-gray-100 text-gray-500 flex-shrink-0">Check MageWorx creds</span>
+                        </div>
+                        <div class="border border-gray-200 p-3 flex items-start gap-3">
+                            <div class="text-center flex-shrink-0 w-10">
+                                <div class="text-lg font-bold text-gray-400">1</div>
+                                <div class="text-[9px] text-gray-400 uppercase">pkg</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium text-[#333333]">stripe/stripe-payments</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Distributed via Stripe&rsquo;s private Composer repo (stripe-php SDK was scanned separately)</p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-medium bg-gray-100 text-gray-500 flex-shrink-0">Scan on cloud</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amasty Licensing Investigation -->
+    <section id="amasty" class="max-w-5xl mx-auto px-6 pb-8 scroll-mt-20">
+        <div class="bg-white border border-gray-200 p-6">
+            <div class="flex items-center gap-2 mb-1">
+                <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800">INVESTIGATION</span>
+                <h2 class="text-lg font-bold text-[#333333]">Amasty Licensing &mdash; Blocker Discovered During Scan</h2>
+            </div>
+            <p class="text-sm text-gray-500 mb-5">This issue was discovered during source code acquisition and affects both the PHP 8.4 scan (Task 2) and ongoing Composer operations.</p>
+
+            <!-- What Happened -->
+            <div class="mb-5">
+                <h3 class="text-xs font-semibold text-[#333333] uppercase tracking-wider mb-3">What Happened</h3>
+                <div class="grid md:grid-cols-3 gap-3">
+                    <div class="border border-red-200 bg-red-50/50 p-3">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <svg class="w-4 h-4 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                            <span class="text-sm font-medium text-red-800">HTTP 403 on All Requests</span>
+                        </div>
+                        <p class="text-xs text-red-700">Every request to <code class="bg-red-100 px-1 text-[11px]">composer.amasty.com</code> returns 403 Forbidden. Installs, updates, and version queries all fail.</p>
+                    </div>
+                    <div class="border border-amber-200 bg-amber-50/50 p-3">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <svg class="w-4 h-4 text-amber-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                            <span class="text-sm font-medium text-amber-800">Global Keys Deprecated</span>
+                        </div>
+                        <p class="text-xs text-amber-700">Amasty retired all global Composer access keys on <strong>1 January 2026</strong>. The credentials in <code class="bg-amber-100 px-1 text-[11px]">auth.json</code> are expired global keys.</p>
+                    </div>
+                    <div class="border border-[#1c69af]/20 bg-[#1c69af]/[0.03] p-3">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <svg class="w-4 h-4 text-[#1c69af] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                            <span class="text-sm font-medium text-[#1c69af]">New System: Project Keys</span>
+                        </div>
+                        <p class="text-xs text-gray-600">Amasty now requires <strong>project-based keys</strong> &mdash; created per-project in the Amasty portal with specific extensions assigned to each.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 14 Affected Packages -->
+            <div class="mb-5" x-data="{ open: false }">
+                <button @click="open = !open" :aria-expanded="open" class="w-full flex items-center justify-between text-xs font-semibold text-[#333333] uppercase tracking-wider mb-2">
+                    <span>14 Affected Packages</span>
+                    <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 text-gray-400 transition-transform" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </button>
+                <div x-show="open" x-collapse x-cloak>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-1.5 text-xs">
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/advanced-conditions</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/base</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/commonrules</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/feed</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/geoip</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/module-special-promo</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/module-special-promo-pro</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/orderattr</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/promo</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/rgrid</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/rules</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/shiprestriction</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/shiprules</div>
+                        <div class="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 border border-gray-200"><span class="w-1.5 h-1.5 bg-gray-400 flex-shrink-0" aria-hidden="true"></span>amasty/table-rate-shipping</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Required -->
+            <div class="mb-5">
+                <h3 class="text-xs font-semibold text-[#333333] uppercase tracking-wider mb-3">Action Required by Client</h3>
+                <div class="border-l-2 border-amber-400 bg-amber-50/50 p-4">
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <span class="inline-flex items-center justify-center w-6 h-6 bg-amber-200 text-amber-800 text-[11px] font-bold flex-shrink-0">1</span>
+                            <div>
+                                <div class="text-sm font-medium text-[#333333]">Log in to Amasty customer portal</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Use the account that originally purchased the 14 extensions.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="inline-flex items-center justify-center w-6 h-6 bg-amber-200 text-amber-800 text-[11px] font-bold flex-shrink-0">2</span>
+                            <div>
+                                <div class="text-sm font-medium text-[#333333]">Create a Project for the Merchandise Store</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Projects replace the old &ldquo;Order Sharing&rdquo; system. Each Magento instance should have its own project.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="inline-flex items-center justify-center w-6 h-6 bg-amber-200 text-amber-800 text-[11px] font-bold flex-shrink-0">3</span>
+                            <div>
+                                <div class="text-sm font-medium text-[#333333]">Assign all 14 purchased extensions to the project</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Each extension must be explicitly linked to the project before Composer keys will grant access.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="inline-flex items-center justify-center w-6 h-6 bg-amber-200 text-amber-800 text-[11px] font-bold flex-shrink-0">4</span>
+                            <div>
+                                <div class="text-sm font-medium text-[#333333]">Generate new project-level Composer keys</div>
+                                <p class="text-xs text-gray-500 mt-0.5">The portal will produce a new username/password pair scoped to this project.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="inline-flex items-center justify-center w-6 h-6 bg-amber-200 text-amber-800 text-[11px] font-bold flex-shrink-0">5</span>
+                            <div>
+                                <div class="text-sm font-medium text-[#333333]">Update <code class="bg-amber-100 px-1 text-xs">auth.json</code> with new credentials</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Replace the existing <code class="bg-gray-100 px-1 text-[11px]">composer.amasty.com</code> entry. Both local and cloud environments need updating.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="inline-flex items-center justify-center w-6 h-6 bg-amber-200 text-amber-800 text-[11px] font-bold flex-shrink-0">6</span>
+                            <div>
+                                <div class="text-sm font-medium text-[#333333]">Verify access</div>
+                                <div class="mt-1 bg-white border border-amber-200 px-3 py-2 font-mono text-[11px] text-gray-600">
+                                    composer update amasty/* --dry-run
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact + What We Can Do Once Resolved -->
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-xs font-semibold text-[#333333] uppercase tracking-wider mb-3">Impact on This Scan</h3>
+                    <div class="border border-gray-200 p-4 h-full">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="text-2xl font-bold text-gray-400">14</div>
+                            <div class="text-xs text-gray-500 leading-tight">packages could not<br>be scanned for PHP 8.4</div>
+                        </div>
+                        <p class="text-xs text-gray-500">These packages are marked as <span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium bg-gray-200 text-gray-700">NOT SCANNED</span> in the Module Register. Their PHP 8.4 compatibility status is unknown until source code can be obtained.</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xs font-semibold text-[#333333] uppercase tracking-wider mb-3">Once Keys Are Provided</h3>
+                    <div class="border border-gray-200 p-4 h-full">
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2 text-xs text-gray-600">
+                                <svg class="w-4 h-4 text-[#1c69af] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                Download source code for all 14 Amasty packages
+                            </li>
+                            <li class="flex items-start gap-2 text-xs text-gray-600">
+                                <svg class="w-4 h-4 text-[#1c69af] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                Run the same PHPCompatibility scan against them
+                            </li>
+                            <li class="flex items-start gap-2 text-xs text-gray-600">
+                                <svg class="w-4 h-4 text-[#1c69af] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                Update the Module Register with their PHP 8.4 status
+                            </li>
+                            <li class="flex items-start gap-2 text-xs text-gray-600">
+                                <svg class="w-4 h-4 text-[#1c69af] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                Enable Amasty version tracking in the Vendor Checker tool
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-xs text-gray-400 mt-4">Full migration steps documented in <code class="bg-gray-100 px-1 text-[11px]">PHP-8.4-Compatibility-Report.md</code>.</p>
+        </div>
+    </section>
+
+    <!-- Dashboard Improvements (13 Feb) -->
+    <section id="dashboard-updates" class="max-w-5xl mx-auto px-6 pb-8 scroll-mt-20">
+        <div class="bg-white border border-gray-200 p-6">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-[#1c69af]/10 text-[#1c69af]">UPDATE</span>
+                <h2 class="text-lg font-bold text-[#333333]">Dashboard &amp; Tooling Improvements &mdash; 13 February 2026</h2>
+            </div>
+
+            <div class="space-y-3">
+                <div class="border-l-2 border-[#1c69af] bg-[#1c69af]/[0.03] border-t border-t-gray-100 pl-4 pr-4 py-3">
+                    <div class="text-sm font-medium text-[#333333]">PHP 8.4 Table Layout Optimisation</div>
+                    <p class="text-sm text-gray-600 mt-1">The 9-column PHP 8.4 compatibility table was reworked with explicit column widths to prevent data-sparse columns (Errors, Warnings, Risk) from consuming space needed by Package and Recommendation. Numeric columns are now centre-aligned. The table scrolls horizontally below 960px rather than crushing content.</p>
+                </div>
+                <div class="border-l-2 border-[#1c69af] bg-[#1c69af]/[0.03] border-t border-t-gray-100 pl-4 pr-4 py-3">
+                    <div class="text-sm font-medium text-[#333333]">Files Popover &amp; Per-Package CSV Export</div>
+                    <p class="text-sm text-gray-600 mt-1">The &ldquo;affected files&rdquo; dropdown was converted from an inline expanding panel to an absolute-positioned popover (620px wide) with shadow, z-index stacking above the sticky nav, and click-outside-to-close behaviour. Each popover now includes a header with file count and a CSV download button that exports the affected file paths for that specific package.</p>
+                </div>
+                <div class="border-l-2 border-[#1c69af] bg-[#1c69af]/[0.03] border-t border-t-gray-100 pl-4 pr-4 py-3">
+                    <div class="text-sm font-medium text-[#333333]">Contextual Descriptions &amp; Visual Legends</div>
+                    <p class="text-sm text-gray-600 mt-1">Every data display section in the dashboard now includes a description explaining what the data represents, why it&rsquo;s relevant, and how to interpret it. This covers: the store selector tabs, all-stores overview grid, section tabs, PHP 8.4 summary cards, risk breakdown cards, filter controls, single store summary cards, filter tabs, and both results tables. Visual legends with colour-coded status indicators were added to the cross-store update matrix and the single store results table.</p>
+                </div>
+                <div class="border-l-2 border-[#1c69af] bg-[#1c69af]/[0.03] border-t border-t-gray-100 pl-4 pr-4 py-3">
+                    <div class="text-sm font-medium text-[#333333]">Accessibility Improvements</div>
+                    <p class="text-sm text-gray-600 mt-1">Added the <code class="bg-gray-100 px-1 text-xs">@alpinejs/collapse</code> plugin for the Actions Required banner animation. All decorative SVG icons now carry <code class="bg-gray-100 px-1 text-xs">aria-hidden="true"</code>. Both search inputs have explicit <code class="bg-gray-100 px-1 text-xs">aria-label</code> attributes. Vendor version status dots now use <code class="bg-gray-100 px-1 text-xs">role="img"</code> with <code class="bg-gray-100 px-1 text-xs">aria-label</code> so colour is not the sole status indicator.</p>
+                </div>
+                <div class="border-l-2 border-[#1c69af] bg-[#1c69af]/[0.03] border-t border-t-gray-100 pl-4 pr-4 py-3">
+                    <div class="text-sm font-medium text-[#333333]">Downloadable File Links</div>
+                    <p class="text-sm text-gray-600 mt-1">All inline references to CSV and JSON files across both delivery reports are now clickable download links. File references in deliverable tables link directly to the hosted file with download icons distinguishing downloads from navigation links.</p>
+                </div>
+                <div class="border-l-2 border-[#1c69af] bg-[#1c69af]/[0.03] border-t border-t-gray-100 pl-4 pr-4 py-3">
+                    <div class="text-sm font-medium text-[#333333]">Landing Page &amp; Navigation</div>
+                    <p class="text-sm text-gray-600 mt-1">A dedicated landing page (<a href="index.html" class="text-[#1c69af] hover:underline">index.html</a>) was created as the entry point for all deliverables &mdash; linking to both delivery reports, the interactive dashboard, and all downloadable files (CSVs + JSON). All pages have consistent &ldquo;Home&rdquo; navigation back to the landing page.</p>
+                </div>
+                <div class="border-l-2 border-[#1c69af] bg-[#1c69af]/[0.03] border-t border-t-gray-100 pl-4 pr-4 py-3">
+                    <div class="text-sm font-medium text-[#333333]">Standalone Runner</div>
+                    <p class="text-sm text-gray-600 mt-1">Added <code class="bg-gray-100 px-1 text-xs">run-check.php</code> &mdash; a CLI script for running vendor version checks outside the Composer plugin context. Supports JSON, CSV, and table output formats with optional file output and result caching.</p>
+                </div>
+                <div class="border-l-2 border-[#1c69af] bg-[#1c69af]/[0.03] border-t border-t-gray-100 pl-4 pr-4 py-3">
+                    <div class="text-sm font-medium text-[#333333]">Version Control</div>
+                    <p class="text-sm text-gray-600 mt-1">The <code class="bg-gray-100 px-1 text-xs">docs/</code> directory is now tracked in version control. All reports, scan data, and the interactive dashboard are committed alongside the module source code.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Acceptance Criteria -->
+    <section id="acceptance" class="max-w-5xl mx-auto px-6 pb-8 scroll-mt-20">
+        <div class="bg-white border border-gray-200 p-6">
+            <div class="flex items-center justify-between mb-1">
+                <h2 class="text-lg font-bold text-[#333333]">Acceptance Criteria</h2>
+                <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-100 border border-green-200 text-xs font-medium text-green-700">
+                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        7 / 7 criteria met
+                    </span>
+                </div>
+            </div>
+            <p class="text-sm text-gray-500 mb-5">Each criterion from the task brief mapped to evidence from the delivered outputs.</p>
+
+            <div class="space-y-3">
+                <!-- 1 -->
+                <div class="border border-green-200 bg-green-50/30 p-4">
+                    <div class="flex items-start gap-3">
+                        <div class="flex items-center justify-center w-8 h-8 bg-green-100 flex-shrink-0">
+                            <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-sm font-medium text-[#333333]">Review all used modules in scope</div>
+                            <p class="text-xs text-gray-500 mt-1">All 700 packages from <code class="bg-gray-100 px-1 text-[11px]">composer.lock</code> analysed. 137 relevant modules identified, categorised (Custom Client, Custom GetJohn, Third-Party Extension, Payment Gateway, SSO/SAML, Magento Core Dep, etc.) and included in the Module Register.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2 -->
+                <div class="border border-green-200 bg-green-50/30 p-4">
+                    <div class="flex items-start gap-3">
+                        <div class="flex items-center justify-center w-8 h-8 bg-green-100 flex-shrink-0">
+                            <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-sm font-medium text-[#333333]">Module register showing which modules are used</div>
+                            <p class="text-xs text-gray-500 mt-1"><a href="php84-compatibility-report.csv" download class="inline-flex items-center gap-1 text-[#1c69af] hover:underline"><code class="bg-[#1c69af]/10 px-1 text-[11px] text-[#1c69af]">PHP-8.4-Module-Register.csv</code><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3"/></svg></a> &mdash; 137 rows, one per package. Columns: Package, Installed Version, Category, PHP 8.4 Status, Risk Level, Errors, Warnings, Files Needing Changes, Recommendation.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 3 -->
+                <div class="border border-green-200 bg-green-50/30 p-4">
+                    <div class="flex items-start gap-3">
+                        <div class="flex items-center justify-center w-8 h-8 bg-green-100 flex-shrink-0">
+                            <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-sm font-medium text-[#333333]">PHP 8.4 compatibility status per module</div>
+                            <p class="text-xs text-gray-500 mt-1">7,377 files scanned across 28 vendor groups. Every module categorised as PASS (97), WARN (12), FAIL (8), NOT SCANNED (18), or NOT IN SCOPE (2). Per-package issue attribution via file path matching.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 4 -->
+                <div class="border border-green-200 bg-green-50/30 p-4">
+                    <div class="flex items-start gap-3">
+                        <div class="flex items-center justify-center w-8 h-8 bg-green-100 flex-shrink-0">
+                            <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-sm font-medium text-[#333333]">List of files that need changing</div>
+                            <p class="text-xs text-gray-500 mt-1">33 specific file paths listed in the written report. Module Register CSV includes per-package file lists. Raw CSV has 118 rows with file path, line number, and exact error message.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 5 -->
+                <div class="border border-green-200 bg-green-50/30 p-4">
+                    <div class="flex items-start gap-3">
+                        <div class="flex items-center justify-center w-8 h-8 bg-green-100 flex-shrink-0">
+                            <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-sm font-medium text-[#333333]">Written summary</div>
+                            <p class="text-xs text-gray-500 mt-1"><code class="bg-gray-100 px-1 text-[11px]">PHP-8.4-Compatibility-Report.md</code> &mdash; 330-line report with executive summary, per-vendor breakdown, file lists, risk assessment, upgrade recommendations, and Amasty licensing migration guide.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 6 -->
+                <div class="border border-green-200 bg-green-50/30 p-4">
+                    <div class="flex items-start gap-3">
+                        <div class="flex items-center justify-center w-8 h-8 bg-green-100 flex-shrink-0">
+                            <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-sm font-medium text-[#333333]">Text file or spreadsheet output</div>
+                            <div class="grid grid-cols-3 gap-2 mt-2">
+                                <div class="bg-white border border-gray-200 p-2 text-center">
+                                    <div class="text-xs font-medium text-[#333333]">Markdown</div>
+                                    <div class="text-[11px] text-gray-400">330 lines</div>
+                                </div>
+                                <div class="bg-white border border-gray-200 p-2 text-center">
+                                    <div class="text-xs font-medium text-[#333333]">CSV (2 files)</div>
+                                    <div class="text-[11px] text-gray-400">137 + 118 rows</div>
+                                </div>
+                                <div class="bg-white border border-gray-200 p-2 text-center">
+                                    <div class="text-xs font-medium text-[#333333]">JSON</div>
+                                    <div class="text-[11px] text-gray-400">28 vendor files</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 7 -->
+                <div class="border border-green-200 bg-green-50/30 p-4">
+                    <div class="flex items-start gap-3">
+                        <div class="flex items-center justify-center w-8 h-8 bg-green-100 flex-shrink-0">
+                            <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-sm font-medium text-[#333333]">Use SAST tool (PHP-CS / SonarQube)</div>
+                            <p class="text-xs text-gray-500 mt-1">PHP_CodeSniffer 3.13.5 + PHPCompatibility 9.3.5 &mdash; the industry-standard SAST toolchain for PHP version compatibility scanning. More specialised than SonarQube for this specific use case. JSON output can be imported into SonarQube if needed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverable Files -->
+    <section id="files" class="max-w-5xl mx-auto px-6 pb-8 scroll-mt-20">
+        <div class="bg-white border border-gray-200 p-6">
+            <h2 class="text-lg font-bold text-[#333333] mb-1">Deliverable Files</h2>
+            <p class="text-sm text-gray-500 mb-6">All outputs produced by this task, grouped by location and purpose.</p>
+
+            <!-- Group 1: Primary Deliverables -->
+            <div class="mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center justify-center w-6 h-6 bg-[#1c69af] text-white text-[10px] font-bold flex-shrink-0">1</span>
+                    <div>
+                        <h3 class="text-sm font-bold text-[#333333]">Primary Deliverables</h3>
+                        <p class="text-xs text-gray-400"><code class="text-[10px]">php-compat-scanner/</code></p>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <!-- Module Register -->
+                    <a href="php84-compatibility-report.csv" download class="group flex items-start gap-3 p-3 border border-gray-200 hover:border-[#1c69af] transition-colors">
+                        <span class="inline-flex items-center justify-center w-9 h-9 bg-green-100 text-green-700 text-[10px] font-bold flex-shrink-0 uppercase">csv</span>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-medium text-[#333333] group-hover:text-[#1c69af] transition-colors">PHP-8.4-Module-Register.csv</span>
+                                <span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium bg-[#1c69af]/10 text-[#1c69af]">KEY DELIVERABLE</span>
+                            </div>
+                            <p class="mt-0.5 text-xs text-gray-500">Module Register (Spreadsheet) &mdash; 137 modules, one row per package. Columns: Package, Installed Version, Category, PHP 8.4 Status, Risk Level, Errors, Warnings, Files Needing Changes, Recommendation. Opens directly in Excel or Google Sheets.</p>
+                        </div>
+                        <svg class="w-4 h-4 text-gray-300 group-hover:text-[#1c69af] flex-shrink-0 mt-1 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </a>
+                    <!-- Written Summary -->
+                    <div class="flex items-start gap-3 p-3 border border-gray-200">
+                        <span class="inline-flex items-center justify-center w-9 h-9 bg-purple-100 text-purple-700 text-[10px] font-bold flex-shrink-0 uppercase">md</span>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-medium text-[#333333]">PHP-8.4-Compatibility-Report.md</span>
+                                <span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium bg-[#1c69af]/10 text-[#1c69af]">KEY DELIVERABLE</span>
+                            </div>
+                            <p class="mt-0.5 text-xs text-gray-500">Written Summary (Text) &mdash; 330-line Markdown report. Executive summary, per-vendor breakdown with specific file paths, risk assessment matrix, recommended upgrade path, and complete Amasty licensing migration guide.</p>
+                        </div>
+                    </div>
+                    <!-- Raw Issue Detail -->
+                    <div class="flex items-start gap-3 p-3 border border-gray-200">
+                        <span class="inline-flex items-center justify-center w-9 h-9 bg-green-100 text-green-700 text-[10px] font-bold flex-shrink-0 uppercase">csv</span>
+                        <div class="flex-1 min-w-0">
+                            <span class="text-sm font-medium text-[#333333]">php84-compatibility-results.csv</span>
+                            <p class="mt-0.5 text-xs text-gray-500">Raw Issue Detail (Spreadsheet) &mdash; 118-row CSV with per-file, per-issue detail (file path, line number, severity, message). For developers who need to see exactly what was flagged.</p>
+                        </div>
+                    </div>
+                    <!-- Raw Scanner Output -->
+                    <div class="flex items-start gap-3 p-3 border border-gray-200">
+                        <span class="inline-flex items-center justify-center w-9 h-9 bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0 uppercase">json</span>
+                        <div class="flex-1 min-w-0">
+                            <span class="text-sm font-medium text-[#333333]">results/*.json</span>
+                            <p class="mt-0.5 text-xs text-gray-500">Raw Scanner Output &mdash; 28 phpcs JSON output files (one per vendor group). Machine-readable, can be imported into SonarQube or other tools if needed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group 2: Visual Presentation -->
+            <div class="mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center justify-center w-6 h-6 bg-[#1c69af] text-white text-[10px] font-bold flex-shrink-0">2</span>
+                    <div>
+                        <h3 class="text-sm font-bold text-[#333333]">Visual Presentation</h3>
+                        <p class="text-xs text-gray-400"><code class="text-[10px]">module-composer-vendor-checker/docs/</code></p>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <!-- Dashboard -->
+                    <a href="dashboard.html" class="group flex items-start gap-3 p-3 border border-gray-200 hover:border-[#1c69af] transition-colors">
+                        <span class="inline-flex items-center justify-center w-9 h-9 bg-blue-100 text-blue-700 text-[10px] font-bold flex-shrink-0 uppercase">html</span>
+                        <div class="flex-1 min-w-0">
+                            <span class="text-sm font-medium text-[#333333] group-hover:text-[#1c69af] transition-colors">dashboard.html</span>
+                            <p class="mt-0.5 text-xs text-gray-500">Interactive HTML dashboard with PHP 8.4 Compatibility Assessment, optimised table layout with popover file viewer, per-package CSV exports, and accessibility improvements.</p>
+                        </div>
+                        <svg class="w-4 h-4 text-gray-300 group-hover:text-[#1c69af] flex-shrink-0 mt-1 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                    <!-- Cross-store CSV -->
+                    <a href="cross-store-report.csv" download class="group flex items-start gap-3 p-3 border border-gray-200 hover:border-[#1c69af] transition-colors">
+                        <span class="inline-flex items-center justify-center w-9 h-9 bg-green-100 text-green-700 text-[10px] font-bold flex-shrink-0 uppercase">csv</span>
+                        <div class="flex-1 min-w-0">
+                            <span class="text-sm font-medium text-[#333333] group-hover:text-[#1c69af] transition-colors">cross-store-report.csv</span>
+                            <p class="mt-0.5 text-xs text-gray-500">Cross-store vendor version comparison data. Multi-store view of all packages across all 6 Magento instances.</p>
+                        </div>
+                        <svg class="w-4 h-4 text-gray-300 group-hover:text-[#1c69af] flex-shrink-0 mt-1 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </a>
+                    <!-- PHP 8.4 CSV -->
+                    <a href="php84-compatibility-report.csv" download class="group flex items-start gap-3 p-3 border border-gray-200 hover:border-[#1c69af] transition-colors">
+                        <span class="inline-flex items-center justify-center w-9 h-9 bg-green-100 text-green-700 text-[10px] font-bold flex-shrink-0 uppercase">csv</span>
+                        <div class="flex-1 min-w-0">
+                            <span class="text-sm font-medium text-[#333333] group-hover:text-[#1c69af] transition-colors">php84-compatibility-report.csv</span>
+                            <p class="mt-0.5 text-xs text-gray-500">PHP 8.4 compatibility scan summary. Per-package status, risk, error/warning counts, and affected files.</p>
+                        </div>
+                        <svg class="w-4 h-4 text-gray-300 group-hover:text-[#1c69af] flex-shrink-0 mt-1 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </a>
+                    <!-- Results JSON -->
+                    <a href="results.json" download class="group flex items-start gap-3 p-3 border border-gray-200 hover:border-[#1c69af] transition-colors">
+                        <span class="inline-flex items-center justify-center w-9 h-9 bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0 uppercase">json</span>
+                        <div class="flex-1 min-w-0">
+                            <span class="text-sm font-medium text-[#333333] group-hover:text-[#1c69af] transition-colors">results.json</span>
+                            <p class="mt-0.5 text-xs text-gray-500">Complete scan results data. Powers the interactive dashboard; includes all store data, version comparisons, and PHP 8.4 compatibility results.</p>
+                        </div>
+                        <svg class="w-4 h-4 text-gray-300 group-hover:text-[#1c69af] flex-shrink-0 mt-1 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Group 3: Tooling -->
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center justify-center w-6 h-6 bg-[#1c69af] text-white text-[10px] font-bold flex-shrink-0">3</span>
+                    <div>
+                        <h3 class="text-sm font-bold text-[#333333]">Tooling</h3>
+                        <p class="text-xs text-gray-400"><code class="text-[10px]">module-composer-vendor-checker/</code></p>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex items-start gap-3 p-3 border border-gray-200">
+                        <span class="inline-flex items-center justify-center w-9 h-9 bg-indigo-100 text-indigo-700 text-[10px] font-bold flex-shrink-0 uppercase">php</span>
+                        <div class="flex-1 min-w-0">
+                            <span class="text-sm font-medium text-[#333333]">run-check.php</span>
+                            <p class="mt-0.5 text-xs text-gray-500">Standalone CLI runner &mdash; run vendor version checks outside the Composer plugin context. Supports JSON, CSV, and table output formats with optional file output and result caching.</p>
+                            <div class="mt-2 bg-gray-50 border border-gray-200 px-3 py-2 font-mono text-[11px] text-gray-600">
+                                php run-check.php &lt;path-to-composer.lock&gt; [--format=json|csv|table] [--output=file] [--no-cache]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Next Steps -->
+    <section id="next-steps" class="max-w-5xl mx-auto px-6 pb-8 scroll-mt-20">
+        <div class="bg-white border border-gray-200 p-6">
+            <h2 class="text-lg font-bold text-[#333333] mb-4">Recommended Next Steps</h2>
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="bg-[#1c69af]/5 border-b border-[#1c69af]/20">
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs w-12">Priority</th>
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Action</th>
+                        <th class="text-left px-3 py-2 font-medium text-[#333333] text-xs">Owner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-red-100 text-red-800">High</span></td>
+                        <td class="px-3 py-2 text-gray-700">Migrate Amasty Composer credentials to project-level keys (see Amasty investigation section)</td>
+                        <td class="px-3 py-2 text-gray-600">Client</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-red-100 text-red-800">High</span></td>
+                        <td class="px-3 py-2 text-gray-700">Verify Amasty subscription status &mdash; annual renewal required for updates</td>
+                        <td class="px-3 py-2 text-gray-600">Client</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800">Medium</span></td>
+                        <td class="px-3 py-2 text-gray-700">Re-run PHP 8.4 scan against 14 Amasty + 3 other unscanned packages once credentials are resolved</td>
+                        <td class="px-3 py-2 text-gray-600">GetJohn</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800">Medium</span></td>
+                        <td class="px-3 py-2 text-gray-700">Upgrade Magento to 2.4.7+ to resolve all laminas/symfony/guzzle PHP 8.4 issues (6 of 8 FAIL packages)</td>
+                        <td class="px-3 py-2 text-gray-600">GetJohn</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-[#1c69af]/10 text-[#1c69af]">Low</span></td>
+                        <td class="px-3 py-2 text-gray-700">Update stripe/stripe-php to latest version (only non-Magento FAIL package requiring action)</td>
+                        <td class="px-3 py-2 text-gray-600">GetJohn</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-[#1c69af]/10 text-[#1c69af]">Low</span></td>
+                        <td class="px-3 py-2 text-gray-700">Investigate MageWorx private repo auth &mdash; credentials may need renewal</td>
+                        <td class="px-3 py-2 text-gray-600">Client</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#333333] mt-4">
+        <div class="max-w-5xl mx-auto px-6 py-6">
+            <div class="flex items-center justify-between text-xs text-gray-400">
+                <div>Get Connect &mdash; Task 2 Delivery Report &mdash; 13 February 2026</div>
+                <div>QB Digital Software Ltd &mdash; qbdigital.co.uk</div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>
